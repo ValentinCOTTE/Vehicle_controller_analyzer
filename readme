@@ -1,0 +1,8 @@
+Simple results
+./verifyta -q -s VerifCar.xml VerifCar.q > Tests.txt
+
+Results with global time and consuption
+./memtime ./verifyta -q -s VerifCar.xml VerifCar.q > Tests.txt
+
+Results with individual time and consuption summary
+./verifyta -q -s -u VerifCar.xml VerifCar.q > Tests.txt

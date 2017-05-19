@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Scale
+const int scale = 100;
+
+// System parameters (define size of the data structure)
+const int S := 10;	// sample period, in 1/scale seconds
+const int L := 50000;	// length of the road segment, in 1/scale meters
+const int R := 1050;	// width of the road segment, in 1/scale meters
+const int V_min := 1000;	// min value of longitudinal speed, in 1/scale meters per second
+const int V_max := 4000;	// max value of longitudinal speed, in 1/scale meters per second
+const int A_min := -500;	// min value of longitudinal acceleration, in 1/scale meters per second squared
+const int A_max := 300;	// max value of longitudinal acceleration, in 1/scale meters per second squared
+const int GranA := 100;	// granularity of the acceleration expressed in 1/scale meters per second squared
+const int W := 100;	// maximal absolute value of the lateral speed expressed in 1/scale meters per second
+const int NormX := 100;	// maximal loss of precision during a second in 1/scale meters (&gt;= (GranA*S/scale)/2)
+
+// Environment constraints
+const int length_vehicle := 500;    // length of a vehicle in 1/scale meters
+const int width_vehicle := 200;    // width of a vehicle in 1/scale meters
+const int begin_junction := 20000;	// begining of junction lane in 1/scale meters
+const int end_junction := 40000;	// end of junction lane in 1/scale meters
+const int nb_lane := 3;	// number of lanes, including junction (&gt;= 2)
+const int marking[nb_lane+1] := {0,(350*scale)/(W*S),(700*scale)/(W*S),(R*scale)/(W*S)};	// lateral position of markings separating lanes (junction is lane 0)
+
+const int nb_car := 2;	// number of vehicles (&gt;= 2)
+const int ctr_freq[nb_car] := {11,11};	// activation sample of the controler for each vehicle in 1/scale second, must be greater than S
+const int min_com_delay[nb_car] := {3,3};	// min communication delay for each vehicle in 1/scale second, must be smaller than the vehicle's controller sample
+const int max_com_delay[nb_car] := {4,4};	// max communication delay for each vehicle in 1/scale second, must be smaller than the vehicle's controller sample
+const int init_posX[nb_car] := {5000,0};	// initial longitudinal position for each vehicle in 1/scale meters
+const int init_posY[nb_car] := {525,525};	// initial lateral position for each vehicle in 1/scale meters
+const int init_V[nb_car] := {2000,3000};	// initial longitudinal speed for each vehicle in 1/scale meters per second
+const int init_A[nb_car] := {0,0};	// initial longitudinal acceleration for each vehicle in 1/scale meters per second squared
+
+// Control related information
+const int navigation_points := 2;	// number of coordinate on a navigation list
+const int navigation_list[nb_car][navigation_points][3] := {
+	{{(0*scale)/(NormX*S),1,1},{(L*scale)/(NormX*S),1,1}},
+	{{(0*scale)/(NormX*S),1,1},{(L*scale)/(NormX*S),1,1}}
+};	// GPS trajectory for each vehicle in list of {posX,lane(min),lane(max)}, each car MUST have a complete trajectory that goes up to horizon value
+const int safety_length := 200;	// longitudinal safety distance of a vehicle in 1/scale meters
+const int safety_width := 50;	// lateral safety distance of a vehicle in 1/scale meters
+const int traj_length := 1000;	// length of the predicted trajectory in 1/scale seconds
+const int delay_step := 100;	// delay step in 1/scale seconds
+const int max_delay := 500;	// maximum delay in 1/scale seconds
+
+////////////////////////////////////////////////////////////////////// Parameters end zone
+
+// Constants and data structure obtained from system parameters
+const int GranV := GranA*S;	// granularity of the longitudinal speed expressed in 1/scale/scale meters per second
+const int GranX := NormX*S;	// granularity of the longitudinal position expressed in 1/scale/scale meters
+const int GranY := W*S;	// granularity of the lateral position expressed in 1/scale/scale meters
+const int p := 2*NormX*scale/GranV;	// used for posX update
+
+const int LengthX := (L*scale)/GranX;	// normalized length of the road segment
+const int LengthY := (R*scale)/GranY;	// normalized width of the road segment
+const int min_speed := (V_min*scale)/GranV;	// normalized min value of longitudinal speed
+const int max_speed := (V_max*scale)/GranV;	// normalized max value of longitudinal speed
+const int min_acceleration := A_min/GranA;	// normalized min value of longitudinal acceleration
+const int max_acceleration := A_max/GranA;	// normalized max value of longitudinal acceleration
+
+const int C_len := (length_vehicle*scale)/GranX;	// normalized length of a vehicle
+const int C_wid := (width_vehicle*scale)/GranY;	// normalized width of a vehicle
+const int S_len := (safety_length*scale)/GranX;	// normalized safety length of a vehicle
+const int S_wid := (safety_width*scale)/GranY;	// normalized safety width of a vehicle
+const int J_beg := (begin_junction*scale)/GranX;	// used for posX and posY update
+const int J_end := (end_junction*scale)/GranX;	// used for posX and posY update
+const int J_inf := marking[1]-(C_wid/2);	// used for posY update
+const int J_sup := marking[1]+(C_wid/2);	// used for posY update
+const int traj_range := traj_length/S;	// range of the predicted trajectory (number of points)
+const int LengthDelay := max_delay/delay_step;
+
+typedef int[0,LengthX] RangeX;	// longitudinal position range
+typedef int[1,LengthY] RangeY;	// lateral position range
+typedef int[min_speed,max_speed] RangeV;	// speed range
+typedef int[min_acceleration,max_acceleration] RangeA;	// acceleration range
+typedef int[-1,1] RangeD;	// direction range
+typedef int[0,nb_car-1] RangeId;	// ids range
+typedef int[0,LengthDelay] RangeDelay;	// delay range
+typedef int[0,nb_lane-1] RangeLane;	// lanes range
+
+// Querries memory
+int[0,20*scale/S] nb_updates;
+
+// Information structure for each vehicle, the parenthesis indicate wich automaton updates the variable
+struct{
+bool on_the_road;	// tells if the vehicle is on or out of the road (environment)
+RangeX posX;	// longitudinal position of the car (environment)
+RangeY posY;	// lateral position of the car (environment)
+RangeV speed;	// longitudinal speed (environment)
+RangeA acceleration;	// longitudinal acceleration (controller)
+RangeD direction;	// lateral speed (controller)
+
+RangeLane goal;	// signal to other vehicles the lane this vehicle is trying to reach (controller)
+RangeDelay delay;	// signal to other vehicles how long the vehicle is waiting before applying its intention (controller)
+}car[nb_car];
+
+struct{
+RangeLane goal[nb_car-1];	// keeps other vehicles' goal
+RangeDelay delay[nb_car-1];	// keeps other vehicles' delay
+}data[nb_car];
+
+void update(){
+	bool unempty := false;
+	for(id : int[0,nb_car-1]) if(car[id].on_the_road) unempty := true;
+	if(unempty) nb_updates++;
+
+	for(id : int[0,nb_car-1]){
+		//initialization (only occurs once)
+		if(car[id].on_the_road == false){
+			if(car[id].posX == 0){
+				car[id].on_the_road := true;
+				car[id].posX := (init_posX[id]*scale)/GranX;
+				car[id].posY := (init_posY[id]*scale)/GranY;
+				car[id].speed := (init_V[id]*scale)/GranV;
+				car[id].acceleration := init_A[id]/GranA;
+			}
+		}
+		else{
+			//update longitudinal position
+			if((((2*car[id].speed)+car[id].acceleration)/p)*2 &lt; (((2*car[id].speed)+car[id].acceleration)*2)/p and car[id].posX &lt; LengthX) car[id].posX++;    // upper rounded when rest is &gt; 0.5
+			if(car[id].posX + (((2*car[id].speed)+car[id].acceleration)/p) &gt;= LengthX){
+				car[id].posX := LengthX;
+				car[id].on_the_road := false;
+			}
+			else car[id].posX += ((2*car[id].speed)+car[id].acceleration)/p;
+			if(car[id].posX &gt; J_end and car[id].posY &lt; J_sup) car[id].on_the_road := false;	// car is out of the road if did not change lane before the end of junction lane
+
+			//update speed
+			if(car[id].speed + car[id].acceleration &gt; max_speed) car[id].speed := max_speed;
+			else if(car[id].speed + car[id].acceleration &lt; min_speed) car[id].speed := min_speed;
+			else car[id].speed += car[id].acceleration; // adjust speed regarding the variation choosen by the controler
+
+			//update lateral position
+			if(car[id].direction == -1 and car[id].on_the_road){
+				if((car[id].posX &lt;= J_end and car[id].posX &gt;= J_beg) or car[id].posY &gt;= J_sup or car[id].posY &lt;= J_inf){	// forbiding to go on junction lane before the junction starts
+					if(car[id].posY &gt; 1) car[id].posY--;
+				}
+			}
+			if(car[id].direction == 1 and car[id].on_the_road){
+				if((car[id].posX &lt;= J_end and car[id].posX &gt;= J_beg) or car[id].posY &gt;= J_sup or car[id].posY &lt;= J_inf){	// forbiding to get out of junction lane before the junction starts
+					if(car[id].posY &lt; LengthY) car[id].posY++;
+				}
+			}
+			if(car[id].posX &lt; J_beg and car[id].posY &lt; J_sup and car[id].posY &gt; J_inf) car[id].on_the_road := false;	// car is out of the road if beetween junction lane and highway out of the junction zone
+		}
+	}
+}
+
+//Begining of editable module related functions
+
+// Tells which lane matches with a given lateral position
+RangeLane y_to_lane(RangeY y){
+	for(i : int[1,nb_lane]){
+		if(y&lt;=marking[i]) return i-1;
+	}
+	return nb_lane-1;	// for compilation needs
+}
+
+// Put the new value of the flag in regard to GPS trajectory
+RangeLane navigation(RangeId id){
+	for(i : int[0,navigation_points-1]){
+		if(navigation_list[id][i][0]&gt;car[id].posX){
+			if(navigation_list[id][i][1] &gt; y_to_lane(car[id].posY)) return navigation_list[id][i][1];
+			if(navigation_list[id][i][2] &lt; y_to_lane(car[id].posY)) return navigation_list[id][i][2];
+			return y_to_lane(car[id].posY);
+		}
+	}
+	return y_to_lane(car[id].posY);
+}
+
+// Computes a predicted trajectory based on parameters
+void compute_traj(RangeX&amp; traj_X[traj_range], RangeY&amp; traj_Y[traj_range], RangeX posX, RangeY posY, RangeV speed, RangeA acceleration, RangeLane goal, RangeDelay d){
+	int[-S,max_delay] delay := d*delay_step;    //conversion of the delay in 1/scale seconds unit
+    RangeD direction;    //virtual direction
+    // At each sample, choose a direction, mimic an update of the environment, then store the position in the trajectory data structure
+	for(i: int[0,traj_range-1]){
+		//Choosing virtual direction
+		direction := 0;
+		if(y_to_lane(posY) &lt; goal) direction := 1;
+		if(y_to_lane(posY) &gt; goal) direction := -1;
+		if(direction == 0){
+			if(posY &lt; (marking[y_to_lane(posY)]+marking[y_to_lane(posY)+1])/2) direction := 1;
+			if(posY &gt; (marking[y_to_lane(posY)]+marking[y_to_lane(posY)+1])/2) direction := -1;
+		}
+
+		//update longitudinal position
+		if((((2*speed)+acceleration)/p)*2 &lt; (((2*speed)+acceleration)*2)/p and posX &lt; LengthX) posX++;    // upper rounded when rest is &gt; 0.5
+		if(posX + (((2*speed)+acceleration)/p) &gt;= LengthX) posX := LengthX;
+		else posX += ((2*speed)+acceleration)/p;
+
+		//update speed
+		if(speed + acceleration &gt; max_speed) speed := max_speed;
+		else if(speed + acceleration &lt; min_speed) speed := min_speed;
+		else speed += acceleration; // adjust speed regarding the variation choosen by the controler
+
+		//update lateral position
+		if(delay &gt; 0) delay -= S;
+		else{
+			if(direction == -1 and posY &gt; 1) posY--;
+			if(direction == 1 and posY &lt; LengthY) posY++;
+		}
+
+		//Storing data
+		if(posX &lt; LengthX){
+			traj_X[i] := posX;
+			traj_Y[i] := posY;
+		}
+		else traj_X[i] := 0;
+	}
+}
+
+// Check if there is a possible collision beetween two trajectories
+bool possible_collision(RangeX&amp; traj_X1[traj_range], RangeY&amp; traj_Y1[traj_range], RangeX&amp; traj_X2[traj_range], RangeY&amp; traj_Y2[traj_range]){
+    // For each point in trajectory one, check if the point of trajectory two with the same timed indicator is in the neighborhood
+	for(i : int[0,traj_range-1]){
+		if(traj_X1[i] != 0 and traj_X2[i] != 0){    // do not check if no value
+				if(traj_X1[i] &lt; traj_X2[i] + C_len + S_len and traj_X1[i] &gt; traj_X2[i] - C_len - S_len){
+					if(traj_Y1[i] &lt; traj_Y2[i] + C_wid + S_wid and traj_Y1[i] &gt; traj_Y2[i] - C_wid - S_wid) return true;
+				}
+		}
+	}
+	return false;
+}
+
+// Check wished trajectory against prioritary vehicles wished trajectory
+bool wished_behaviour_not_safe(RangeId id, bool prio[nb_car], RangeX long[nb_car][traj_range], RangeY lat[nb_car][traj_range], RangeA acceleration, RangeLane goal, RangeDelay delay){
+	compute_traj(long[id], lat[id], car[id].posX, car[id].posY, car[id].speed, acceleration, goal, delay);
+	for(n : int[0,nb_car-1]){
+		if(id != n and prio[n] and possible_collision(long[id], lat[id], long[n], lat[n])) return true;
+	}
+    // check obstacles
+	for(i : int[0,traj_range-1]){
+		if(long[id][i] &gt; J_end and lat[id][i] &lt; J_sup) return true;	// junction lane after end of zone
+		if(long[id][i] &lt; J_beg and lat[id][i] &lt; J_sup and lat[id][i] &gt; J_inf) return true;	// beetween junction lane and highway out of the junction zone
+	}
+	return false;
+}
+
+
+// Give the goal value that id knows about n
+RangeLane read_goal(RangeId id, RangeId n){
+	if(id&gt;n) return data[id].goal[n];
+	if(id&lt;n) return data[id].goal[n-1];
+	return car[id].goal;
+}
+
+// Give the delay value that id knows about n
+RangeDelay read_delay(RangeId id, RangeId n){
+	if(id&gt;n) return data[id].delay[n];
+	if(id&lt;n) return data[id].delay[n-1];
+	return car[id].delay;
+}
+
+void broadcasting(RangeId id){
+    // Send goal and data value to other vehicles
+	for(n : int[0,nb_car-1]){
+		if(id&lt;n){
+			data[n].goal[id] := car[id].goal;
+			data[n].delay[id] := car[id].delay;
+		}
+		if(id&gt;n){
+			data[n].goal[id-1] := car[id].goal;
+			data[n].delay[id-1] := car[id].delay;
+		}
+	}
+}
+
+//End of editable module related functions
+
+void controller(RangeId id){
+	RangeD temp_dir;
+	RangeA temp_acc;
+
+//Begining of editable module related variables
+
+	bool prio[nb_car];    // list of prioritary vehicles
+	RangeX long[nb_car][traj_range];
+	RangeY lat[nb_car][traj_range];
+	RangeDelay temp_del;
+	RangeLane temp_goal;
+
+//End of editable module related variables
+
+	if(car[id].on_the_road){
+
+//Begining of editable module
+
+	// Choosing best possible choices in regard of GPS indication
+		car[id].goal := navigation(id);
+		temp_acc := max_acceleration;
+		temp_del := 0;
+		temp_goal := car[id].goal;
+
+	// Computing the list of other vehicles that have priority
+		for(n : int[0,nb_car-1]){
+			if(car[n].on_the_road){
+				if(car[id].posX &lt; car[n].posX  or (car[id].posX == car[n].posX  and car[id].posY &lt; car[n].posY)) prio[n] := true;
+				else prio[n] := false;
+			}
+			else prio[n] := false;
+		}
+
+	// Computing other vehicles' trajectory
+		for(n : int[0,nb_car-1]){
+			compute_traj(long[n], lat[n], car[n].posX, car[n].posY, car[n].speed, car[n].acceleration, read_goal(id,n), read_delay(id,n));
+		}
+
+	// Finding a suitable behaviour closest to the original intention and respecting prioritary vehicles intention
+		// variation speed
+		while(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del) and temp_acc &gt; min_acceleration){
+			// checking if possible with delay
+			while(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del) and temp_del &lt; LengthDelay) temp_del++;
+			//overtaking obstacle (left)
+			if(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del) and car[id].goal + 1 &lt;= nb_lane-1){
+				temp_del := 0;
+				temp_goal := car[id].goal + 1;
+				// checking if possible with delay
+				while(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del) and temp_del &lt; LengthDelay) temp_del++;
+			}
+			//overtaking obstacle (right)
+			if(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del) and car[id].goal - 1 &gt;= 0){
+				temp_del := 0;
+				temp_goal := car[id].goal - 1;
+				// checking if possible with delay
+				while(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del) and temp_del &lt; LengthDelay) temp_del++;
+			}
+			if(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del)){
+				temp_del := 0;
+				temp_acc--;
+				temp_goal := car[id].goal;
+				}
+		}
+
+	// Urgent behaviour
+		if(wished_behaviour_not_safe(id,prio,long,lat,temp_acc,temp_goal,temp_del)){
+			temp_goal := y_to_lane(car[id].posY);
+			temp_del := 0;
+		}
+
+	// Computing new direction
+		if(temp_del == 0){
+			if(y_to_lane(car[id].posY) &lt; temp_goal) temp_dir := 1;
+			if(y_to_lane(car[id].posY) &gt; temp_goal) temp_dir := -1;
+			if(temp_dir == 0){
+				if(car[id].posY &lt; (marking[y_to_lane(car[id].posY)]+marking[y_to_lane(car[id].posY)+1])/2) temp_dir := 1;
+				if(car[id].posY &gt; (marking[y_to_lane(car[id].posY)]+marking[y_to_lane(car[id].posY)+1])/2) temp_dir := -1;
+			}
+		}
+
+	//Applying controller's choices
+		car[id].goal := temp_goal;
+		car[id].delay := temp_del;
+
+//End of editable module
+
+		//Applying controller's choices
+		car[id].direction := temp_dir;
+		car[id].acceleration := temp_acc;
+	}
+}
+
+//This part concerns querries
+
+bool querry_collision(){
+    // Evaluate if two vehicle collide.
+    // A vehicle's position is the center of a rectangle that represents the vehicle with given length and width
+    // Therefore, by checking if an other vehicle position is present in a space that has twice those mesurments, we can evaluate collision between two vehicles.
+	for(n : int[0,nb_car-1]){
+		for(m : int[0,nb_car-1]){
+			if(n!=m and car[n].on_the_road and car[m].on_the_road){
+				if(car[n].posX &lt; car[m].posX + C_len and car[n].posX &gt; car[m].posX - C_len){
+					if(car[n].posY &lt; car[m].posY + C_wid and car[n].posY &gt; car[m].posY - C_wid) return true;
+				}
+			}
+		}
+	}
+	return false;
+}</declaration>
+	<template>
+		<name x="5" y="5">Environment</name>
+		<declaration>clock x; // in 1/scale seconds</declaration>
+		<location id="id0" x="-17" y="0">
+			<name x="-51" y="-8">s0</name>
+			<label kind="invariant" x="-34" y="17">x&lt;=S</label>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-42" y="-85">x&gt;= S</label>
+			<label kind="assignment" x="-59" y="-59">x=0,update()</label>
+			<nail x="50" y="-59"/>
+			<nail x="-94" y="-59"/>
+		</transition>
+	</template>
+	<template>
+		<name>Controller</name>
+		<parameter>int[0,nb_car-1] id</parameter>
+		<declaration>clock x; // in 1/scale seconds</declaration>
+		<location id="id1" x="161" y="-85">
+			<name x="136" y="-110">s1</name>
+			<label kind="invariant" x="102" y="-68">x&lt;=max_com_delay[id]</label>
+		</location>
+		<location id="id2" x="-102" y="-85">
+			<name x="-127" y="-110">s0</name>
+			<label kind="invariant" x="-153" y="-68">x&lt;=ctr_freq[id]</label>
+		</location>
+		<init ref="id2"/>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="guard" x="-42" y="-102">x&gt;=min_com_delay[id]</label>
+			<label kind="assignment" x="-25" y="-85">broadcasting(id)</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-34" y="-161">x&gt;=ctr_freq[id]</label>
+			<label kind="assignment" x="-34" y="-144">x=0, controller(id)</label>
+			<nail x="-102" y="-145"/>
+			<nail x="161" y="-145"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Env = Environment();
+Ctr0 = Controller(0);
+Ctr1 = Controller(1);
+// List one or more processes to be composed into a system.
+system Env, Ctr0, Ctr1;
+    </system>
+	<queries>
+	</queries>
+</nta>
