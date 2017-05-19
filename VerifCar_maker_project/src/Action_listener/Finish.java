@@ -158,7 +158,14 @@ public class Finish implements ActionListener{
 			new Error_message("Cars are not defined");
 			evryThingIsOk=false;
 		}
-		
+		else {
+			for(int i=0;i<param.getCar_list().size();i++){
+				if(Integer.parseInt(param.getCar_list().get(i).getVmax())<Integer.parseInt(param.getV_min())){
+					new Error_message("v_max can not be smaller than V_min");
+					evryThingIsOk=false;
+				}
+			}
+		}
 		
 		if(Integer.parseInt(param.getScale())<0){
 			new Error_message("scale can not be negative value");
@@ -244,6 +251,11 @@ public class Finish implements ActionListener{
 			new Error_message("max_delay can not be negative value");
 			evryThingIsOk=false;
 			
+		}
+		
+		if((Integer.parseInt(param.getMax_delay())%Integer.parseInt(param.getDelay_step()))!=0){
+			new Error_message("max_delay must be a multiple of delay_step");
+			evryThingIsOk=false;	
 		}
 		
 		
