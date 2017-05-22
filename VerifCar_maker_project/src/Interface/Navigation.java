@@ -108,6 +108,7 @@ public class Navigation extends JDialog {
 			getContentPane().add(lblP.get(y), gbc_lblP.get(y));
 			
 			txtP.add(y, new JTextField());
+			txtP.get(y).setText(Integer.toString(Integer.parseInt(param.getL())/(Integer.parseInt(car.getTxtNavigationpoints().getText())-y)));
 			gbc_txtP.add(y, new GridBagConstraints());
 			gbc_txtP.get(y).insets = new Insets(0, 0, 5, 5);
 			gbc_txtP.get(y).fill = GridBagConstraints.HORIZONTAL;
@@ -139,8 +140,6 @@ public class Navigation extends JDialog {
 			getContentPane().add(comboBox_2.get(y), gbc_comboBox_5.get(y));
 			
 		}
-		txtP.get(0).setText("0");
-		txtP.get(0).setEditable(false);
 		txtP.get(y-1).setText(param.getL());
 		txtP.get(y-1).setEditable(false);
 				

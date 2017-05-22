@@ -39,28 +39,29 @@ public class Param_writer {
 				+"List of vehicle param (one by vehicle) :\n"
 				+"\n";
 				for(int i=0;i<param.getCar_list().size();i++){
-					save+="length_vehicle"+param.getCar_list().get(i).getLength_vehicle()+"\n"
-					+"width_vehicle\n"
-					+"v_max ( >= V_min )\n"
-					+"a_min ( can be negative )\n"
-					+"a_max ( >= a_min )\n"
-					+"ctr_freq ( > S )\n"
-					+"max_com ( < ctr_freq )\n"
-					+"min_com ( < max_com )\n"
-					+"init_posX ( <= L )\n"
-					+"init_posY ( <= R )\n"
-					+"init_V ( >= V_min && <= v_max )\n"
-					+"init_A ( >= a_min && <= a_max )\n"
-					+"navigation_points ( >= 1 )\n"
-					+"navigation_list[navigation_points][3] to build as a list of list {{0,lane(inf),lane(sup)},{(posX*scale)/(NormX*S),lane(inf),lane(sup)}, ... , {(L*scale)/(NormX*S),lane(inf),lane(sup)}}\n" 
-					+"\n";
+					save+="Car"+(i+1)+":\n"
+							+"length_vehicle="+param.getCar_list().get(i).getLength_vehicle()+"\n"
+							+"width_vehicle="+param.getCar_list().get(i).getWidth()+"\n"
+							+"v_max="+param.getCar_list().get(i).getVmax()+"\n"
+							+"a_min="+param.getCar_list().get(i).getAmin()+"\n"
+							+"a_max="+param.getCar_list().get(i).getAmax()+"\n"
+							+"ctr_freq"+param.getCar_list().get(i).getCtrfreq()+"\n"
+							+"max_com="+param.getCar_list().get(i).getMaxcom()+"\n"
+							+"min_com="+param.getCar_list().get(i).getMincom()+"\n"
+							+"init_posX="+param.getCar_list().get(i).getInitposx()+"\n"
+							+"init_posY="+param.getCar_list().get(i).getInitposy()+"\n"
+							+"init_V"+param.getCar_list().get(i).getInitV()+"\n"
+							+"init_A"+param.getCar_list().get(i).getInitA()+"\n"
+							+"navigation_points"+param.getCar_list().get(i).getNavigationpoints()+"\n"
+							+"navigation_list:\n";
+							for(int y=0;y<param.getCar_list().get(i).getNavigation_posX().size();y++){
+								save+="posX="+param.getCar_list().get(i).getNavigation_posX()+"\n"
+										+"lane_inf="+param.getCar_list().get(i).getNavigation_laneInf()+"\n"
+										+"lane_sup="+param.getCar_list().get(i).getNavigation_LaneSup()+"\n";
+							}
+							 
+					save+="\n";
 				}
-				
-			save+="Constants to calculate :"
-				+""
-				+"V_max ( max v_max from vehicle param )"
-				+"A_min ( min a_min from vehicle param )"
-				+"A_max ( max a_max from vehicle param )";
 			
 			
 			

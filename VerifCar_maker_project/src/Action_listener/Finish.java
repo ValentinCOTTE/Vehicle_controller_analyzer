@@ -304,7 +304,7 @@ public class Finish implements ActionListener{
 				
 				int y=0;
 				while(y<size_empty){
-					new_navigation_posX.add(y, param.getCar_list().get(i).getNavigation_posX().get(0));
+					new_navigation_posX.add(y, "0");
 					new_navigation_laneInf.add(y, param.getCar_list().get(i).getNavigation_laneInf().get(0));
 					new_navigation_laneSup.add(y, param.getCar_list().get(i).getNavigation_LaneSup().get(0));
 					y++;

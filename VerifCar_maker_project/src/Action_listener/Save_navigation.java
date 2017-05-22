@@ -52,10 +52,10 @@ public class Save_navigation implements ActionListener{
 		
 		if(evryThingIsOk){
 			page.getCar().setNavigation_posX(navigation_posX);
-		page.getCar().setNavigation_laneInf(navigation_laneInf);
-		page.getCar().setNavigation_LaneSup(navigation_laneSup);
+			page.getCar().setNavigation_laneInf(navigation_laneInf);
+			page.getCar().setNavigation_LaneSup(navigation_laneSup);
 
-		this.page.dispose();
+			this.page.dispose();
 		}
 		
 		
