@@ -8,6 +8,7 @@ import Interface.Error_message;
 import Interface.Param;
 import Principal.Application;
 import Principal.File_maker;
+import Principal.Script_generator;
 
 public class Finish implements ActionListener{
 
@@ -323,7 +324,7 @@ public class Finish implements ActionListener{
 			
 			//end zone
 			this.app.dispose();
-			File_maker file=new File_maker(param);
+			Script_generator script=new Script_generator(param);
 		}
 		
 	}

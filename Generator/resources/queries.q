@@ -1,0 +1,1 @@
+E<> querry_collision()

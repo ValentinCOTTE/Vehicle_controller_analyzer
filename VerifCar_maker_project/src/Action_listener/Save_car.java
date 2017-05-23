@@ -192,7 +192,6 @@ public class Save_car implements ActionListener{
 		
 		if(this.car.getNavigation_posX().size()!=(Integer.parseInt(this.car.getNavigationpoints()))){
 			new Error_message("navigation_list is not defined");
-			System.out.println(this.car.getNavigation_posX().size()+"  "+(Integer.parseInt(this.car.getNavigationpoints())-1));
 			evryThingIsOk=false;
 		}
 		

@@ -44,12 +44,6 @@ public class Save_marking implements ActionListener{
 				evryThingIsOk=false;
 			}
 			
-			if(i>0){
-				if(Integer.parseInt(this.page.getTextPosY().get(i).getText())<Integer.parseInt(this.page.getTextPosY().get(i-1).getText())){
-				new Error_message("posY"+(i)+" can not be greater than posY"+(i+1));
-				evryThingIsOk=false;
-				}
-			}
 			
 			//end error zone
 			marking.add(i, this.page.getTextPosY().get(i).getText());

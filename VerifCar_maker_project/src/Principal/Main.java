@@ -8,6 +8,10 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException{
 		UIManager.put("swing.boldMetal", Boolean.FALSE);		
 		Application application = new Application();
+		
+		
+		
+		
 	}
 	
 }
