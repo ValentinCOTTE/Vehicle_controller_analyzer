@@ -64,7 +64,7 @@ public class Marking extends JDialog {
 			contentPane.add(lblPosY.get(i), gbc_lblPosY.get(i));
 			
 			textPosY.add(i, new JTextField());
-			textPosY.get(i).setText(Integer.toString((Integer.parseInt(param.getR())/nb_lane)*(i+1)));
+			textPosY.get(i).setText(param.getMarking().get(i));
 			gbc_textPosY.add(i, new GridBagConstraints());
 			gbc_textPosY.get(i).insets = new Insets(0, 0, 5, 0);
 			gbc_textPosY.get(i).fill = GridBagConstraints.HORIZONTAL;

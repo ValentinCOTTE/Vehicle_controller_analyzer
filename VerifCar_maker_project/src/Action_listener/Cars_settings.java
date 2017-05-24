@@ -40,7 +40,6 @@ public class Cars_settings implements ActionListener{
 			for(int i=0;i<nb;i++){
 				carsList.add(i, new Car(i,param));
 			}
-			param.setCar_list(carsList);
 		}
 		
 	}

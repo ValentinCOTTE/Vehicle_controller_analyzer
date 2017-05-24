@@ -41,7 +41,7 @@ public class Param_writer {
 				for(int i=0;i<param.getCar_list().size();i++){
 					save+="Car"+(i+1)+":\n"
 							+"length_vehicle="+param.getCar_list().get(i).getLength_vehicle()+"\n"
-							+"width_vehicle="+param.getCar_list().get(i).getWidth()+"\n"
+							+"width_vehicle="+param.getCar_list().get(i).getWidth_vehicle()+"\n"
 							+"v_max="+param.getCar_list().get(i).getVmax()+"\n"
 							+"a_min="+param.getCar_list().get(i).getAmin()+"\n"
 							+"a_max="+param.getCar_list().get(i).getAmax()+"\n"
@@ -57,7 +57,7 @@ public class Param_writer {
 							for(int y=0;y<param.getCar_list().get(i).getNavigation_posX().size();y++){
 								save+="posX="+param.getCar_list().get(i).getNavigation_posX()+"\n"
 										+"lane_inf="+param.getCar_list().get(i).getNavigation_laneInf()+"\n"
-										+"lane_sup="+param.getCar_list().get(i).getNavigation_LaneSup()+"\n";
+										+"lane_sup="+param.getCar_list().get(i).getNavigation_laneSup()+"\n";
 							}
 							 
 					save+="\n";

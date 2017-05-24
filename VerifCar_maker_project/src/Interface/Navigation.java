@@ -108,7 +108,7 @@ public class Navigation extends JDialog {
 			getContentPane().add(lblP.get(y), gbc_lblP.get(y));
 			
 			txtP.add(y, new JTextField());
-			txtP.get(y).setText(Integer.toString(Integer.parseInt(param.getL())/(Integer.parseInt(car.getTxtNavigationpoints().getText())-y)));
+			txtP.get(y).setText(param.getCar_list().get(car.getIndex()).getNavigation_posX().get(y));
 			gbc_txtP.add(y, new GridBagConstraints());
 			gbc_txtP.get(y).insets = new Insets(0, 0, 5, 5);
 			gbc_txtP.get(y).fill = GridBagConstraints.HORIZONTAL;
@@ -121,6 +121,8 @@ public class Navigation extends JDialog {
 			for(int i=0;i<Integer.parseInt(param.getNb_lane());i++){
 				comboBox.get(y).addItem(num_lane.get(i));
 			}
+			comboBox.get(y).setSelectedItem(param.getCar_list().get(car.getIndex()).getNavigation_laneInf().get(y));
+	
 			gbc_comboBox.add(y, new GridBagConstraints());
 			gbc_comboBox.get(y).insets = new Insets(0, 0, 5, 5);
 			gbc_comboBox.get(y).fill = GridBagConstraints.HORIZONTAL;
@@ -132,6 +134,8 @@ public class Navigation extends JDialog {
 			for(int i=0;i<Integer.parseInt(param.getNb_lane());i++){
 				comboBox_2.get(y).addItem(num_lane.get(i));
 			}
+			comboBox_2.get(y).setSelectedItem(param.getCar_list().get(car.getIndex()).getNavigation_laneSup().get(y));
+			
 			gbc_comboBox_5.add(y, new GridBagConstraints());
 			gbc_comboBox_5.get(y).insets = new Insets(0, 0, 5, 0);
 			gbc_comboBox_5.get(y).fill = GridBagConstraints.HORIZONTAL;

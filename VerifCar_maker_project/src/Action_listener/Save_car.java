@@ -8,6 +8,7 @@ import Interface.Car;
 import Interface.Error_message;
 import Interface.Navigation;
 import Interface.Param;
+import Principal.Car_set;
 
 public class Save_car implements ActionListener{
 	Car car;
@@ -251,7 +252,7 @@ public class Save_car implements ActionListener{
 		
 		
 		if(evryThingIsOk){
-			param.getCar_list().set(car.getIndex(), car);
+			param.getCar_list().set(car.getIndex(), new Car_set(car.getLength_vehicle(), car.getWidth_vehicle(), car.getVmax(), car.getAmin(), car.getAmax(), car.getMaxcom(), car.getCtrfreq(), car.getMincom(), car.getInitposx(), car.getInitV(), car.getInitA(), car.getInitposy(), car.getNavigationpoints(), car.getNavigation_posX(), car.getNavigation_laneInf(), car.getNavigation_LaneSup()));
 		this.car.dispose();
 		}
 	}

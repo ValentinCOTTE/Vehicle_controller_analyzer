@@ -19,7 +19,7 @@ public class Save_navigation implements ActionListener{
 		
 		
 		
-			ArrayList<String> navigation_posX= new ArrayList<String>();
+		ArrayList<String> navigation_posX= new ArrayList<String>();
 		ArrayList<String> navigation_laneInf=new ArrayList<String>();
 		ArrayList<String> navigation_laneSup=new ArrayList<String>();
 		

@@ -79,22 +79,22 @@ public class Script_generator {
 					SCRIPT+=" "+param.getNavigation_points_max()
 					+" "+param.getCar_list().get(0).getNavigation_posX().get(0)
 					+" "+param.getCar_list().get(0).getNavigation_laneInf().get(0)
-					+" "+param.getCar_list().get(0).getNavigation_LaneSup().get(0);
+					+" "+param.getCar_list().get(0).getNavigation_laneSup().get(0);
 							
 					for(int i=1;i<param.getCar_list().get(0).getNavigation_posX().size();i++){
 						SCRIPT+=" "+param.getCar_list().get(0).getNavigation_posX().get(i)
 								+" "+param.getCar_list().get(0).getNavigation_laneInf().get(i)
-								+" "+param.getCar_list().get(0).getNavigation_LaneSup().get(i);
+								+" "+param.getCar_list().get(0).getNavigation_laneSup().get(i);
 					}  	
 							;
 					for(int car=1;car<param.getCar_list().size();car++){
 						SCRIPT+=" "+param.getCar_list().get(car).getNavigation_posX().get(0)
 								+" "+param.getCar_list().get(car).getNavigation_laneInf().get(0)
-								+" "+param.getCar_list().get(car).getNavigation_LaneSup().get(0);
+								+" "+param.getCar_list().get(car).getNavigation_laneSup().get(0);
 						for(int i=1;i<param.getCar_list().get(0).getNavigation_posX().size();i++){
 							SCRIPT+=" "+param.getCar_list().get(car).getNavigation_posX().get(i)
 									+" "+param.getCar_list().get(car).getNavigation_laneInf().get(i)
-									+" "+param.getCar_list().get(car).getNavigation_LaneSup().get(i);
+									+" "+param.getCar_list().get(car).getNavigation_laneSup().get(i);
 						}
 					}
 					SCRIPT+=" "+param.getSafety_length()

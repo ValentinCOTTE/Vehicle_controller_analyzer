@@ -307,19 +307,19 @@ public class Finish implements ActionListener{
 				while(y<size_empty){
 					new_navigation_posX.add(y, "0");
 					new_navigation_laneInf.add(y, param.getCar_list().get(i).getNavigation_laneInf().get(0));
-					new_navigation_laneSup.add(y, param.getCar_list().get(i).getNavigation_LaneSup().get(0));
+					new_navigation_laneSup.add(y, param.getCar_list().get(i).getNavigation_laneSup().get(0));
 					y++;
 				}
 				while(y<Integer.parseInt(param.getNavigation_points_max())){
 					new_navigation_posX.add(y, param.getCar_list().get(i).getNavigation_posX().get(y-size_empty));
 					new_navigation_laneInf.add(y, param.getCar_list().get(i).getNavigation_laneInf().get(y-size_empty));
-					new_navigation_laneSup.add(y, param.getCar_list().get(i).getNavigation_LaneSup().get(y-size_empty));
+					new_navigation_laneSup.add(y, param.getCar_list().get(i).getNavigation_laneSup().get(y-size_empty));
 					y++;
 				}
 				
 				param.getCar_list().get(i).setNavigation_posX(new_navigation_posX);
 				param.getCar_list().get(i).setNavigation_laneInf(new_navigation_laneInf);
-				param.getCar_list().get(i).setNavigation_LaneSup(new_navigation_laneSup);
+				param.getCar_list().get(i).setNavigation_laneSup(new_navigation_laneSup);
 			}
 			
 			//end zone

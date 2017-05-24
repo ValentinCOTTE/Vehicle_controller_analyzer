@@ -87,16 +87,16 @@ public class File_maker {
 					+ "// Control related information\n"
 					+ "const int navigation_points := "+param.getNavigation_points_max()+";	// number of coordinate on a navigation list\n"	//MISE A JOUR ????
 					+ "const int navigation_list[nb_car][navigation_points][3] := {\n"
-					+"{{("+param.getCar_list().get(0).getNavigation_posX().get(0)+"*scale)/(NormX*S),"+param.getCar_list().get(0).getNavigation_laneInf().get(0)+","+param.getCar_list().get(0).getNavigation_LaneSup().get(0)+"}";
+					+"{{("+param.getCar_list().get(0).getNavigation_posX().get(0)+"*scale)/(NormX*S),"+param.getCar_list().get(0).getNavigation_laneInf().get(0)+","+param.getCar_list().get(0).getNavigation_laneSup().get(0)+"}";
 					
 					for(int i=1;i<param.getCar_list().get(0).getNavigation_posX().size();i++){
-						parameters_zone+=",{("+param.getCar_list().get(0).getNavigation_posX().get(i)+"*scale)/(NormX*S),"+param.getCar_list().get(0).getNavigation_laneInf().get(i)+","+param.getCar_list().get(0).getNavigation_LaneSup().get(i)+"}";
+						parameters_zone+=",{("+param.getCar_list().get(0).getNavigation_posX().get(i)+"*scale)/(NormX*S),"+param.getCar_list().get(0).getNavigation_laneInf().get(i)+","+param.getCar_list().get(0).getNavigation_laneSup().get(i)+"}";
 					}
 					parameters_zone+="}\n";
 					for(int car=1;car<param.getCar_list().size();car++){
-						parameters_zone+=",{{("+param.getCar_list().get(car).getNavigation_posX().get(0)+"*scale)/(NormX*S),"+param.getCar_list().get(car).getNavigation_laneInf().get(0)+","+param.getCar_list().get(car).getNavigation_LaneSup().get(0)+"}";
+						parameters_zone+=",{{("+param.getCar_list().get(car).getNavigation_posX().get(0)+"*scale)/(NormX*S),"+param.getCar_list().get(car).getNavigation_laneInf().get(0)+","+param.getCar_list().get(car).getNavigation_laneSup().get(0)+"}";
 						for(int i=1;i<param.getCar_list().get(0).getNavigation_posX().size();i++){
-							parameters_zone+=",{("+param.getCar_list().get(car).getNavigation_posX().get(i)+"*scale)/(NormX*S),"+param.getCar_list().get(car).getNavigation_laneInf().get(i)+","+param.getCar_list().get(car).getNavigation_LaneSup().get(i)+"}";
+							parameters_zone+=",{("+param.getCar_list().get(car).getNavigation_posX().get(i)+"*scale)/(NormX*S),"+param.getCar_list().get(car).getNavigation_laneInf().get(i)+","+param.getCar_list().get(car).getNavigation_laneSup().get(i)+"}";
 						}
 						parameters_zone+= "}\n";
 					}
