@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import Interface.Car;
 
 public class Param_set implements Serializable{
+	
+	private static final long serialVersionUID = 1422449543046132620L;
+	
 	String scale;
 	String S;
 	String L;
@@ -17,14 +20,14 @@ public class Param_set implements Serializable{
 	String nb_lane; //( >= 2 )
 	String end_junction; //( <= L )
 	String begin_junction; //( <= end_junction )
-	ArrayList<String> marking=new ArrayList<String>(); //[nb_lane + 1] ( marking[i] <= marking[i-1] ) to build as a list {posY, ... , posY}
+	ArrayList<String> marking; //[nb_lane + 1] ( marking[i] <= marking[i-1] ) to build as a list {posY, ... , posY}
 	String nb_car; //( >= 2 )
 	String safety_length;
 	String safety_width;
 	String traj_length;
 	String delay_step;
 	String max_delay; //(integer multiple of delay_step)
-	ArrayList<Car_set> Car_list=new ArrayList<Car_set>();
+	ArrayList<Car_set> Car_list;
 	
 	String navigation_points_max;
 	String V_max;

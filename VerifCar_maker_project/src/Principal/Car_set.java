@@ -1,8 +1,9 @@
 package Principal;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Car_set {
+public class Car_set implements Serializable{
 	String length_vehicle;
 	String width_vehicle;
 	String vmax;

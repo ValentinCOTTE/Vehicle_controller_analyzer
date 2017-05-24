@@ -101,17 +101,24 @@ public class Param extends JPanel {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
+		
+		btnLoadSettings = new JButton("LOAD SETTINGS");
+		GridBagConstraints gbc_btnLoadSettings = new GridBagConstraints();
+		gbc_btnLoadSettings.insets = new Insets(0, 0, 5, 5);
+		gbc_btnLoadSettings.gridx = 1;
+		gbc_btnLoadSettings.gridy = 1;
+		add(btnLoadSettings, gbc_btnLoadSettings);
 		
 		lblScale = new JLabel("scale=");
 		GridBagConstraints gbc_lblScale = new GridBagConstraints();
 		gbc_lblScale.insets = new Insets(0, 0, 5, 5);
 		gbc_lblScale.anchor = GridBagConstraints.EAST;
 		gbc_lblScale.gridx = 1;
-		gbc_lblScale.gridy = 1;
+		gbc_lblScale.gridy = 2;
 		add(lblScale, gbc_lblScale);
 		
 		txtscale = new JTextField();
@@ -120,7 +127,7 @@ public class Param extends JPanel {
 		gbc_txtscale.insets = new Insets(0, 0, 5, 0);
 		gbc_txtscale.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtscale.gridx = 2;
-		gbc_txtscale.gridy = 1;
+		gbc_txtscale.gridy = 2;
 		add(txtscale, gbc_txtscale);
 		txtscale.setColumns(10);
 		
@@ -129,7 +136,7 @@ public class Param extends JPanel {
 		gbc_lblS.insets = new Insets(0, 0, 5, 5);
 		gbc_lblS.anchor = GridBagConstraints.EAST;
 		gbc_lblS.gridx = 1;
-		gbc_lblS.gridy = 2;
+		gbc_lblS.gridy = 3;
 		add(lblS, gbc_lblS);
 		
 		txtS = new JTextField();
@@ -138,7 +145,7 @@ public class Param extends JPanel {
 		gbc_txtS.insets = new Insets(0, 0, 5, 0);
 		gbc_txtS.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtS.gridx = 2;
-		gbc_txtS.gridy = 2;
+		gbc_txtS.gridy = 3;
 		add(txtS, gbc_txtS);
 		txtS.setColumns(10);
 		
@@ -147,7 +154,7 @@ public class Param extends JPanel {
 		gbc_lblL.insets = new Insets(0, 0, 5, 5);
 		gbc_lblL.anchor = GridBagConstraints.EAST;
 		gbc_lblL.gridx = 1;
-		gbc_lblL.gridy = 3;
+		gbc_lblL.gridy = 4;
 		add(lblL, gbc_lblL);
 		
 		txtL = new JTextField();
@@ -156,7 +163,7 @@ public class Param extends JPanel {
 		gbc_txtL.insets = new Insets(0, 0, 5, 0);
 		gbc_txtL.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtL.gridx = 2;
-		gbc_txtL.gridy = 3;
+		gbc_txtL.gridy = 4;
 		add(txtL, gbc_txtL);
 		txtL.setColumns(10);
 		
@@ -165,7 +172,7 @@ public class Param extends JPanel {
 		gbc_lblR.insets = new Insets(0, 0, 5, 5);
 		gbc_lblR.anchor = GridBagConstraints.EAST;
 		gbc_lblR.gridx = 1;
-		gbc_lblR.gridy = 4;
+		gbc_lblR.gridy = 5;
 		add(lblR, gbc_lblR);
 		
 		txtR = new JTextField();
@@ -174,7 +181,7 @@ public class Param extends JPanel {
 		gbc_txtR.insets = new Insets(0, 0, 5, 0);
 		gbc_txtR.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtR.gridx = 2;
-		gbc_txtR.gridy = 4;
+		gbc_txtR.gridy = 5;
 		add(txtR, gbc_txtR);
 		txtR.setColumns(10);
 		
@@ -183,7 +190,7 @@ public class Param extends JPanel {
 		gbc_lblVmin.insets = new Insets(0, 0, 5, 5);
 		gbc_lblVmin.anchor = GridBagConstraints.EAST;
 		gbc_lblVmin.gridx = 1;
-		gbc_lblVmin.gridy = 5;
+		gbc_lblVmin.gridy = 6;
 		add(lblVmin, gbc_lblVmin);
 		
 		txtV_min = new JTextField();
@@ -192,7 +199,7 @@ public class Param extends JPanel {
 		gbc_txtV_min.insets = new Insets(0, 0, 5, 0);
 		gbc_txtV_min.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtV_min.gridx = 2;
-		gbc_txtV_min.gridy = 5;
+		gbc_txtV_min.gridy = 6;
 		add(txtV_min, gbc_txtV_min);
 		txtV_min.setColumns(10);
 		
@@ -201,7 +208,7 @@ public class Param extends JPanel {
 		gbc_lblGranA.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGranA.anchor = GridBagConstraints.ABOVE_BASELINE_TRAILING;
 		gbc_lblGranA.gridx = 1;
-		gbc_lblGranA.gridy = 6;
+		gbc_lblGranA.gridy = 7;
 		add(lblGranA, gbc_lblGranA);
 		
 		txtGranA = new JTextField();
@@ -210,7 +217,7 @@ public class Param extends JPanel {
 		gbc_txtGranA.insets = new Insets(0, 0, 5, 0);
 		gbc_txtGranA.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtGranA.gridx = 2;
-		gbc_txtGranA.gridy = 6;
+		gbc_txtGranA.gridy = 7;
 		add(txtGranA, gbc_txtGranA);
 		txtGranA.setColumns(10);
 		
@@ -219,7 +226,7 @@ public class Param extends JPanel {
 		gbc_lblW.insets = new Insets(0, 0, 5, 5);
 		gbc_lblW.anchor = GridBagConstraints.EAST;
 		gbc_lblW.gridx = 1;
-		gbc_lblW.gridy = 7;
+		gbc_lblW.gridy = 8;
 		add(lblW, gbc_lblW);
 		
 		txtW = new JTextField();
@@ -228,7 +235,7 @@ public class Param extends JPanel {
 		gbc_txtW.insets = new Insets(0, 0, 5, 0);
 		gbc_txtW.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtW.gridx = 2;
-		gbc_txtW.gridy = 7;
+		gbc_txtW.gridy = 8;
 		add(txtW, gbc_txtW);
 		txtW.setColumns(10);
 		
@@ -237,7 +244,7 @@ public class Param extends JPanel {
 		gbc_lblNormx.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNormx.anchor = GridBagConstraints.EAST;
 		gbc_lblNormx.gridx = 1;
-		gbc_lblNormx.gridy = 8;
+		gbc_lblNormx.gridy = 9;
 		add(lblNormx, gbc_lblNormx);
 		
 		txtNormX = new JTextField();
@@ -246,7 +253,7 @@ public class Param extends JPanel {
 		gbc_txtNormX.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNormX.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtNormX.gridx = 2;
-		gbc_txtNormX.gridy = 8;
+		gbc_txtNormX.gridy = 9;
 		add(txtNormX, gbc_txtNormX);
 		txtNormX.setColumns(10);
 		
@@ -255,7 +262,7 @@ public class Param extends JPanel {
 		gbc_lblNblane.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNblane.anchor = GridBagConstraints.EAST;
 		gbc_lblNblane.gridx = 1;
-		gbc_lblNblane.gridy = 9;
+		gbc_lblNblane.gridy = 10;
 		add(lblNblane, gbc_lblNblane);
 		
 		txtnb_lane = new JTextField();
@@ -264,7 +271,7 @@ public class Param extends JPanel {
 		gbc_txtnb_lane.insets = new Insets(0, 0, 5, 0);
 		gbc_txtnb_lane.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtnb_lane.gridx = 2;
-		gbc_txtnb_lane.gridy = 9;
+		gbc_txtnb_lane.gridy = 10;
 		add(txtnb_lane, gbc_txtnb_lane);
 		txtnb_lane.setColumns(10);
 		
@@ -273,7 +280,7 @@ public class Param extends JPanel {
 		gbc_lblEndjunction.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEndjunction.anchor = GridBagConstraints.EAST;
 		gbc_lblEndjunction.gridx = 1;
-		gbc_lblEndjunction.gridy = 10;
+		gbc_lblEndjunction.gridy = 11;
 		add(lblEndjunction, gbc_lblEndjunction);
 		
 		txtend_junction = new JTextField();
@@ -282,7 +289,7 @@ public class Param extends JPanel {
 		gbc_txtend_junction.insets = new Insets(0, 0, 5, 0);
 		gbc_txtend_junction.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtend_junction.gridx = 2;
-		gbc_txtend_junction.gridy = 10;
+		gbc_txtend_junction.gridy = 11;
 		add(txtend_junction, gbc_txtend_junction);
 		txtend_junction.setColumns(10);
 		
@@ -291,7 +298,7 @@ public class Param extends JPanel {
 		gbc_lblBeginjunction.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBeginjunction.anchor = GridBagConstraints.EAST;
 		gbc_lblBeginjunction.gridx = 1;
-		gbc_lblBeginjunction.gridy = 11;
+		gbc_lblBeginjunction.gridy = 12;
 		add(lblBeginjunction, gbc_lblBeginjunction);
 		
 		txtbegin_junction = new JTextField();
@@ -300,7 +307,7 @@ public class Param extends JPanel {
 		gbc_txtbegin_junction.insets = new Insets(0, 0, 5, 0);
 		gbc_txtbegin_junction.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtbegin_junction.gridx = 2;
-		gbc_txtbegin_junction.gridy = 11;
+		gbc_txtbegin_junction.gridy = 12;
 		add(txtbegin_junction, gbc_txtbegin_junction);
 		txtbegin_junction.setColumns(10);
 		
@@ -309,7 +316,7 @@ public class Param extends JPanel {
 		gbc_lblMarking.anchor = GridBagConstraints.EAST;
 		gbc_lblMarking.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMarking.gridx = 1;
-		gbc_lblMarking.gridy = 12;
+		gbc_lblMarking.gridy = 13;
 		add(lblMarking, gbc_lblMarking);
 		
 		btnDefine = new JButton("Define");
@@ -318,7 +325,7 @@ public class Param extends JPanel {
 		gbc_btnDefine.anchor = GridBagConstraints.WEST;
 		gbc_btnDefine.insets = new Insets(0, 0, 5, 0);
 		gbc_btnDefine.gridx = 2;
-		gbc_btnDefine.gridy = 12;
+		gbc_btnDefine.gridy = 13;
 		add(btnDefine, gbc_btnDefine);
 		
 		lblnb_car = new JLabel("nb_car=");
@@ -326,7 +333,7 @@ public class Param extends JPanel {
 		gbc_lblnb_car.insets = new Insets(0, 0, 5, 5);
 		gbc_lblnb_car.anchor = GridBagConstraints.EAST;
 		gbc_lblnb_car.gridx = 1;
-		gbc_lblnb_car.gridy = 13;
+		gbc_lblnb_car.gridy = 14;
 		add(lblnb_car, gbc_lblnb_car);
 		
 		txtnb_car = new JTextField();
@@ -335,7 +342,7 @@ public class Param extends JPanel {
 		gbc_txtnb_car.insets = new Insets(0, 0, 5, 0);
 		gbc_txtnb_car.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtnb_car.gridx = 2;
-		gbc_txtnb_car.gridy = 13;
+		gbc_txtnb_car.gridy = 14;
 		add(txtnb_car, gbc_txtnb_car);
 		txtnb_car.setColumns(10);
 		
@@ -344,7 +351,7 @@ public class Param extends JPanel {
 		gbc_lblSafetylength.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSafetylength.anchor = GridBagConstraints.EAST;
 		gbc_lblSafetylength.gridx = 1;
-		gbc_lblSafetylength.gridy = 14;
+		gbc_lblSafetylength.gridy = 15;
 		add(lblSafetylength, gbc_lblSafetylength);
 		
 		txtsafety_length = new JTextField();
@@ -353,7 +360,7 @@ public class Param extends JPanel {
 		gbc_txtsafety_length.insets = new Insets(0, 0, 5, 0);
 		gbc_txtsafety_length.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtsafety_length.gridx = 2;
-		gbc_txtsafety_length.gridy = 14;
+		gbc_txtsafety_length.gridy = 15;
 		add(txtsafety_length, gbc_txtsafety_length);
 		txtsafety_length.setColumns(10);
 		
@@ -362,7 +369,7 @@ public class Param extends JPanel {
 		gbc_lblSafetywidth.insets = new Insets(0, 0, 5, 5);
 		gbc_lblSafetywidth.anchor = GridBagConstraints.EAST;
 		gbc_lblSafetywidth.gridx = 1;
-		gbc_lblSafetywidth.gridy = 15;
+		gbc_lblSafetywidth.gridy = 16;
 		add(lblSafetywidth, gbc_lblSafetywidth);
 		
 		txtsafety_width = new JTextField();
@@ -371,7 +378,7 @@ public class Param extends JPanel {
 		gbc_txtsafety_width.insets = new Insets(0, 0, 5, 0);
 		gbc_txtsafety_width.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtsafety_width.gridx = 2;
-		gbc_txtsafety_width.gridy = 15;
+		gbc_txtsafety_width.gridy = 16;
 		add(txtsafety_width, gbc_txtsafety_width);
 		txtsafety_width.setColumns(10);
 		
@@ -380,7 +387,7 @@ public class Param extends JPanel {
 		gbc_lbltraj_length.insets = new Insets(0, 0, 5, 5);
 		gbc_lbltraj_length.anchor = GridBagConstraints.EAST;
 		gbc_lbltraj_length.gridx = 1;
-		gbc_lbltraj_length.gridy = 16;
+		gbc_lbltraj_length.gridy = 17;
 		add(lbltraj_length, gbc_lbltraj_length);
 		
 		txttraj_length = new JTextField();
@@ -389,7 +396,7 @@ public class Param extends JPanel {
 		gbc_txttraj_length.insets = new Insets(0, 0, 5, 0);
 		gbc_txttraj_length.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txttraj_length.gridx = 2;
-		gbc_txttraj_length.gridy = 16;
+		gbc_txttraj_length.gridy = 17;
 		add(txttraj_length, gbc_txttraj_length);
 		txttraj_length.setColumns(10);
 		
@@ -398,7 +405,7 @@ public class Param extends JPanel {
 		gbc_lblDelayStep.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDelayStep.anchor = GridBagConstraints.EAST;
 		gbc_lblDelayStep.gridx = 1;
-		gbc_lblDelayStep.gridy = 17;
+		gbc_lblDelayStep.gridy = 18;
 		add(lblDelayStep, gbc_lblDelayStep);
 		
 		txtdelay_step = new JTextField();
@@ -407,7 +414,7 @@ public class Param extends JPanel {
 		gbc_txtdelay_step.insets = new Insets(0, 0, 5, 0);
 		gbc_txtdelay_step.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtdelay_step.gridx = 2;
-		gbc_txtdelay_step.gridy = 17;
+		gbc_txtdelay_step.gridy = 18;
 		add(txtdelay_step, gbc_txtdelay_step);
 		txtdelay_step.setColumns(10);
 		
@@ -416,7 +423,7 @@ public class Param extends JPanel {
 		gbc_lblMaxdelay.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMaxdelay.anchor = GridBagConstraints.EAST;
 		gbc_lblMaxdelay.gridx = 1;
-		gbc_lblMaxdelay.gridy = 18;
+		gbc_lblMaxdelay.gridy = 19;
 		add(lblMaxdelay, gbc_lblMaxdelay);
 		
 		txtmax_delay = new JTextField();
@@ -425,17 +432,17 @@ public class Param extends JPanel {
 		gbc_txtmax_delay.insets = new Insets(0, 0, 5, 0);
 		gbc_txtmax_delay.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtmax_delay.gridx = 2;
-		gbc_txtmax_delay.gridy = 18;
+		gbc_txtmax_delay.gridy = 19;
 		add(txtmax_delay, gbc_txtmax_delay);
 		txtmax_delay.setColumns(10);
 		
 		btnCarsSettings = new JButton("Cars settings");
 		btnCarsSettings.addActionListener(new Cars_settings(this));
 		GridBagConstraints gbc_btnCarsSettings = new GridBagConstraints();
+		gbc_btnCarsSettings.anchor = GridBagConstraints.WEST;
 		gbc_btnCarsSettings.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCarsSettings.gridwidth = 2;
-		gbc_btnCarsSettings.gridx = 1;
-		gbc_btnCarsSettings.gridy = 19;
+		gbc_btnCarsSettings.gridx = 2;
+		gbc_btnCarsSettings.gridy = 20;
 		add(btnCarsSettings, gbc_btnCarsSettings);
 		
 		lblDEVELOPPEROPTION = new JLabel("///////////////////////////////////DEVELOPPER OPTION///////////////////////////////////");
@@ -443,7 +450,7 @@ public class Param extends JPanel {
 		gbc_lblDEVELOPPEROPTION.gridwidth = 3;
 		gbc_lblDEVELOPPEROPTION.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDEVELOPPEROPTION.gridx = 0;
-		gbc_lblDEVELOPPEROPTION.gridy = 20;
+		gbc_lblDEVELOPPEROPTION.gridy = 21;
 		add(lblDEVELOPPEROPTION, gbc_lblDEVELOPPEROPTION);
 		
 		btnEditCode = new JButton("Edit code");
@@ -452,7 +459,7 @@ public class Param extends JPanel {
 		gbc_btnEditCode.insets = new Insets(0, 0, 5, 0);
 		gbc_btnEditCode.gridwidth = 3;
 		gbc_btnEditCode.gridx = 0;
-		gbc_btnEditCode.gridy = 21;
+		gbc_btnEditCode.gridy = 22;
 		add(btnEditCode, gbc_btnEditCode);
 		
 		btnEditQueries = new JButton("Edit queries");
@@ -461,7 +468,7 @@ public class Param extends JPanel {
 		gbc_btnEditQueries.gridwidth = 3;
 		gbc_btnEditQueries.insets = new Insets(0, 0, 5, 0);
 		gbc_btnEditQueries.gridx = 0;
-		gbc_btnEditQueries.gridy = 22;
+		gbc_btnEditQueries.gridy = 23;
 		add(btnEditQueries, gbc_btnEditQueries);
 		
 		lblNewLabel = new JLabel("///////////////////////////////////////////////////////////////////////////////////////////////////////////////");
@@ -469,7 +476,7 @@ public class Param extends JPanel {
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridwidth = 3;
 		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 23;
+		gbc_lblNewLabel.gridy = 24;
 		add(lblNewLabel, gbc_lblNewLabel);
 		
 		btnFinish = new JButton("Finish");
@@ -477,7 +484,7 @@ public class Param extends JPanel {
 		GridBagConstraints gbc_btnFinish = new GridBagConstraints();
 		gbc_btnFinish.gridwidth = 3;
 		gbc_btnFinish.gridx = 0;
-		gbc_btnFinish.gridy = 24;
+		gbc_btnFinish.gridy = 25;
 		add(btnFinish, gbc_btnFinish);
 		
 		this.app.setVisible(true);
@@ -508,6 +515,11 @@ public class Param extends JPanel {
 		this.navigation_points_max=set.getNavigation_points_max();
 		this.V_max=set.getV_max();
 		this.A_min=set.getA_min();
+	}
+	
+	public Param_set extract(){
+		return new Param_set(this.getScale(), this.getS(), this.getL(), this.getR(), this.getV_min(), this.getGranA(), this.getW(), this.NormX, this.nb_lane, this.end_junction, this.begin_junction, this.getMarking(), this.getNb_car(), this.safety_length, this.safety_width, this.getTraj_length(), this.getDelay_step(), this.getMax_delay(), this.getCar_list(), this.getNavigation_points_max(), this.getV_max(), this.getA_min());
+		
 	}
 
 	public String getNavigation_points_max() {
@@ -544,6 +556,7 @@ public class Param extends JPanel {
 
 	String A_max;
 	private JButton btnEditQueries;
+	private JButton btnLoadSettings;
 
 	public ArrayList<Car_set> getCar_list() {
 		return Car_list;

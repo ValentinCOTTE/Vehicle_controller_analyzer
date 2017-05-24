@@ -21,8 +21,8 @@ const int length_vehicle := 500;    // length of a vehicle in 1/scale meters
 const int width_vehicle := 200;    // width of a vehicle in 1/scale meters
 const int begin_junction := 20000;	// begining of junction lane in 1/scale meters
 const int end_junction := 40000;	// end of junction lane in 1/scale meters
-const int nb_lane := 3;	// number of lanes, including junction (&gt;= 2)
-const int marking[nb_lane+1] := {0,(350*scale)/(W*S),(750*scale)/(W*S),(R*scale)/(W*S)};	// lateral position of markings separating lanes (junction is lane 0)
+const int nb_lane := 4;	// number of lanes, including junction (&gt;= 2)
+const int marking[nb_lane+1] := {0,(350*scale)/(W*S),(750*scale)/(W*S),(900*scale)/(W*S),(R*scale)/(W*S)};	// lateral position of markings separating lanes (junction is lane 0)
 
 const int nb_car := 2;	// number of vehicles (&gt;= 2)
 const int ctr_freq[nb_car] := {11,11};	// activation sample of the controler for each vehicle in 1/scale second, must be greater than S

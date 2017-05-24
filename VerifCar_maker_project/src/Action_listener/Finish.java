@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import Interface.Error_message;
 import Interface.Param;
+import Interface.Save;
 import Principal.Application;
 import Principal.File_maker;
 import Principal.Script_generator;
@@ -323,8 +324,8 @@ public class Finish implements ActionListener{
 			}
 			
 			//end zone
-			this.app.dispose();
-			Script_generator script=new Script_generator(param);
+			this.app.setVisible(false);
+			new Save(this.app,this.param);
 		}
 		
 	}
