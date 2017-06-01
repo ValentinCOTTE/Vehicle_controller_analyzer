@@ -45,6 +45,7 @@ public class Save_set implements ActionListener{
 					// ouverture d'un flux sur un fichier
 				ObjectOutputStream oos;
 				try {
+					System.out.println(set.getCar_list().get(0).getInitA());
 					oos = new ObjectOutputStream(new FileOutputStream(fichier));// création d'un objet à sérializer
 	
 					
@@ -53,7 +54,7 @@ public class Save_set implements ActionListener{
 						
 						this.page.dispose();
 						this.app.dispose();
-						Script_generator script=new Script_generator(param);
+						Script_generator script=new Script_generator(param.extract());
 						
 					} catch (IOException e1) {
 						System.out.println("ERROR: Serialization failed");

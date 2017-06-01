@@ -67,9 +67,10 @@ public class Application extends JFrame {
 		String navigation_points_max="2";
 		String V_max="4000";
 		String A_min="-500";
+		String A_max="300";
 //end default settings
 		
-		Param_set defaultSet=new Param_set(scale, S, L, R, V_min, GranA, W, NormX, nb_lane, end_junction, begin_junction, marking, nb_car, safety_length, safety_width, traj_length, delay_step, max_delay, Car_list, navigation_points_max, V_max, A_min);
+		Param_set defaultSet=new Param_set(scale, S, L, R, V_min, GranA, W, NormX, nb_lane, end_junction, begin_junction, marking, nb_car, safety_length, safety_width, traj_length, delay_step, max_delay, Car_list, navigation_points_max, V_max, A_min, A_max);
 		
 		fenetre = new Param(this,defaultSet);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

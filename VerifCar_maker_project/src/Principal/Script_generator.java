@@ -10,8 +10,8 @@ import java.io.IOException;
 import Interface.Param;
 
 public class Script_generator {
-	Param param;
-	public Script_generator(Param param){
+	Param_set param;
+	public Script_generator(Param_set param){
 		this.param=param;
 		try {
 			File file =new File("tmp_script.sh");

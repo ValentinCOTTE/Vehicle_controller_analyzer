@@ -22,6 +22,7 @@ import Action_listener.Define_marking;
 import Action_listener.Edit_code;
 import Action_listener.Edit_queries;
 import Action_listener.Finish;
+import Action_listener.Load_settings;
 
 import javax.swing.JLabel;
 
@@ -66,6 +67,10 @@ public class Param extends JPanel {
 	private JLabel lblDEVELOPPEROPTION;
 	private JLabel lblNewLabel;
 	private JButton btnFinish;
+
+	private JButton btnEditQueries;
+	private JButton btnLoadSettings;
+	
 	
 	String scale;
 	String S;
@@ -90,6 +95,7 @@ public class Param extends JPanel {
 	String navigation_points_max;
 	String V_max;
 	String A_min;
+	String A_max;
 	
 	
 	public Param(Application a,Param_set set) {
@@ -107,6 +113,7 @@ public class Param extends JPanel {
 		setLayout(gridBagLayout);
 		
 		btnLoadSettings = new JButton("LOAD SETTINGS");
+		btnLoadSettings.addActionListener(new Load_settings(this));
 		GridBagConstraints gbc_btnLoadSettings = new GridBagConstraints();
 		gbc_btnLoadSettings.insets = new Insets(0, 0, 5, 5);
 		gbc_btnLoadSettings.gridx = 1;
@@ -491,6 +498,14 @@ public class Param extends JPanel {
 
 	}
 	
+	public Application getApp() {
+		return app;
+	}
+
+	public void setApp(Application app) {
+		this.app = app;
+	}
+
 	public void load(Param_set set){
 		this.scale=set.getScale();
 		this.S=set.getS();
@@ -515,10 +530,11 @@ public class Param extends JPanel {
 		this.navigation_points_max=set.getNavigation_points_max();
 		this.V_max=set.getV_max();
 		this.A_min=set.getA_min();
+		this.A_max=set.getA_max();
 	}
 	
 	public Param_set extract(){
-		return new Param_set(this.getScale(), this.getS(), this.getL(), this.getR(), this.getV_min(), this.getGranA(), this.getW(), this.NormX, this.nb_lane, this.end_junction, this.begin_junction, this.getMarking(), this.getNb_car(), this.safety_length, this.safety_width, this.getTraj_length(), this.getDelay_step(), this.getMax_delay(), this.getCar_list(), this.getNavigation_points_max(), this.getV_max(), this.getA_min());
+		return new Param_set(this.getScale(), this.getS(), this.getL(), this.getR(), this.getV_min(), this.getGranA(), this.getW(), this.NormX, this.nb_lane, this.end_junction, this.begin_junction, this.getMarking(), this.getNb_car(), this.safety_length, this.safety_width, this.getTraj_length(), this.getDelay_step(), this.getMax_delay(), this.getCar_list(), this.getNavigation_points_max(), this.getV_max(), this.getA_min(), this.getA_max());
 		
 	}
 
@@ -553,10 +569,6 @@ public class Param extends JPanel {
 	public void setA_max(String a_max) {
 		A_max = a_max;
 	}
-
-	String A_max;
-	private JButton btnEditQueries;
-	private JButton btnLoadSettings;
 
 	public ArrayList<Car_set> getCar_list() {
 		return Car_list;

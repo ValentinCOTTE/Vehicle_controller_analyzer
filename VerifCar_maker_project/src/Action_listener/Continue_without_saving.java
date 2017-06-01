@@ -25,7 +25,6 @@ public class Continue_without_saving implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 			this.page.dispose();
 			this.app.dispose();
-			Script_generator script=new Script_generator(param);
+			Script_generator script=new Script_generator(param.extract());
 	}
-
 }

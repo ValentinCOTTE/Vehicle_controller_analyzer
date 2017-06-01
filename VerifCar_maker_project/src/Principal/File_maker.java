@@ -10,8 +10,8 @@ import java.io.IOException;
 import Interface.Param;
 
 public class File_maker {
-	Param param;
-	public File_maker(Param param){
+	Param_set param;
+	public File_maker(Param_set param){
 		this.param=param;
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File("resources/VerifCar.xml")));

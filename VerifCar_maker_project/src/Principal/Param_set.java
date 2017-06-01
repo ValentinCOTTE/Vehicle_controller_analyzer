@@ -32,11 +32,12 @@ public class Param_set implements Serializable{
 	String navigation_points_max;
 	String V_max;
 	String A_min;
+	String A_max;
 	
 	public Param_set(String scale, String s, String l, String r, String v_min, String granA, String w, String normX,
 			String nb_lane, String end_junction, String begin_junction, ArrayList<String> marking, String nb_car,
 			String safety_length, String safety_width, String traj_length, String delay_step, String max_delay,
-			ArrayList<Car_set> car_list, String navigation_points_max, String v_max, String a_min) {
+			ArrayList<Car_set> car_list, String navigation_points_max, String v_max, String a_min, String a_max) {
 		super();
 		this.scale = scale;
 		this.S = s;
@@ -60,6 +61,7 @@ public class Param_set implements Serializable{
 		this.navigation_points_max = navigation_points_max;
 		this.V_max = v_max;
 		this.A_min = a_min;
+		this.A_max = a_max;
 	}
 
 	public String getScale() {
@@ -236,6 +238,14 @@ public class Param_set implements Serializable{
 
 	public void setA_min(String a_min) {
 		A_min = a_min;
+	}
+	
+	public String getA_max() {
+		return A_max;
+	}
+
+	public void setA_max(String a_max) {
+		A_min = a_max;
 	}
 
 }

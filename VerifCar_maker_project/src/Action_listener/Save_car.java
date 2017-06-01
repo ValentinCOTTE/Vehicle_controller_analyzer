@@ -252,7 +252,7 @@ public class Save_car implements ActionListener{
 		
 		
 		if(evryThingIsOk){
-			param.getCar_list().set(car.getIndex(), new Car_set(car.getLength_vehicle(), car.getWidth_vehicle(), car.getVmax(), car.getAmin(), car.getAmax(), car.getMaxcom(), car.getCtrfreq(), car.getMincom(), car.getInitposx(), car.getInitV(), car.getInitA(), car.getInitposy(), car.getNavigationpoints(), car.getNavigation_posX(), car.getNavigation_laneInf(), car.getNavigation_LaneSup()));
+			param.getCar_list().set(car.getIndex(), new Car_set(car.getLength_vehicle(), car.getWidth_vehicle(), car.getVmax(), car.getAmin(), car.getAmax(), car.getCtrfreq(), car.getMaxcom(), car.getMincom(), car.getInitposx(), car.getInitposy(), car.getInitV(), car.getInitA(), car.getNavigationpoints(), car.getNavigation_posX(), car.getNavigation_laneInf(), car.getNavigation_LaneSup()));
 		this.car.dispose();
 		}
 	}
