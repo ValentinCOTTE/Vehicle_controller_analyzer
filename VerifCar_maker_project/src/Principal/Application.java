@@ -16,9 +16,8 @@ public class Application extends JFrame {
 	 Param fenetre;
 
 
-	 
+
 	public Application() {
-		this.setResizable(false);		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 //default settings
@@ -62,22 +61,21 @@ public class Application extends JFrame {
 			ArrayList<String> sup2=new ArrayList<String>();
 			sup2.add("1");
 			sup2.add("1");
-		Car_list.add(new Car_set("500", "200", "4000", "-500", "300", "11", "4", "3", "0", "525", "3000", "0", "2", posx2, inf2, sup2));		
-		
+		Car_list.add(new Car_set("500", "200", "4000", "-500", "300", "11", "4", "3", "0", "525", "3000", "0", "2", posx2, inf2, sup2));
+
 		String navigation_points_max="2";
 		String V_max="4000";
 		String A_min="-500";
 		String A_max="300";
 //end default settings
-		
+
 		Param_set defaultSet=new Param_set(scale, S, L, R, V_min, GranA, W, NormX, nb_lane, end_junction, begin_junction, marking, nb_car, safety_length, safety_width, traj_length, delay_step, max_delay, Car_list, navigation_points_max, V_max, A_min, A_max);
-		
+
 		fenetre = new Param(this,defaultSet);
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 630);
 		setContentPane(fenetre);
 	}
 
-	
-	
+
+
 }

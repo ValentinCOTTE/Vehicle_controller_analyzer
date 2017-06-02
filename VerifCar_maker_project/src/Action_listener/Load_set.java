@@ -16,16 +16,16 @@ public class Load_set implements ActionListener{
 	String file;
 	Param param;
 	Load page;
-	
+
 	public Load_set(String file, Param param,Load page){
 		this.file=file;
 		this.param=param;
 		this.page=page;
 	}
-	
+
 	public void actionPerformed(ActionEvent arg0) {
 		ObjectInputStream ois = null;
-		 
+
 
 		try {
 			final FileInputStream fichier = new FileInputStream(file);

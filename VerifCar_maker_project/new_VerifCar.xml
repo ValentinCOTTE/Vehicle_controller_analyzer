@@ -42,8 +42,8 @@ const int navigation_list[nb_car][navigation_points][3] := {
 const int safety_length := 200;	// longitudinal safety distance of a vehicle in 1/scale meters
 const int safety_width := 50;	// lateral safety distance of a vehicle in 1/scale meters
 const int traj_length := 1000;	// length of the predicted trajectory in 1/scale seconds
-const int delay_step := 50;	// delay step in 1/scale seconds
-const int max_delay := 100;	// maximum delay in 1/scale seconds
+const int delay_step := 100;	// delay step in 1/scale seconds
+const int max_delay := 500;	// maximum delay in 1/scale seconds
 
 //////////////////////////////////////////////////////////////////////Parameters end zone
 

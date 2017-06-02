@@ -11,13 +11,13 @@ import Interface.Load;
 import Interface.Param;
 import Principal.Param_set;
 
-public class Load_settings implements ActionListener{	
+public class Load_settings implements ActionListener{
 	Param param;
 	public Load_settings(Param param) {
 		super();
 		this.param = param;
 	}
-	
+
 	public void actionPerformed(ActionEvent arg0) {
 		new Load(param);
 	}

@@ -15,5 +15,5 @@ public class Exit implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		this.page.dispose();
 	}
-	
+
 }
