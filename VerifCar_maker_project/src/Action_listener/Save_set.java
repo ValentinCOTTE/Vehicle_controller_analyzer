@@ -45,7 +45,6 @@ public class Save_set implements ActionListener{
 					// ouverture d'un flux sur un fichier
 				ObjectOutputStream oos;
 				try {
-					System.out.println(set.getCar_list().get(0).getInitA());
 					oos = new ObjectOutputStream(new FileOutputStream(fichier));// création d'un objet à sérializer
 	
 					

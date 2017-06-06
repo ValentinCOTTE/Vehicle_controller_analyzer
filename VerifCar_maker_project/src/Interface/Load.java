@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -39,27 +40,37 @@ public class Load extends JDialog {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		getContentPane().setLayout(gridBagLayout);
 
+		if(listefichiers.length==0){
+					setBounds(100, 100, 450, 30);
+					JLabel empty=new JLabel("empty");
+					GridBagConstraints gbc = new GridBagConstraints();
+					gbc.insets = new Insets(0, 0, 0, 5);
+					gbc.anchor=GridBagConstraints.CENTER;
+					gbc.gridx = 1;
+					gbc.gridy = 1;
+					add(empty, gbc);
+		}
+		else{
+			int i;
+			for(i=0;i<listefichiers.length;i++){
+				if(listefichiers[i].endsWith(".ser")==true){
 
-
-		int i;
-		for(i=0;i<listefichiers.length;i++){
-			if(listefichiers[i].endsWith(".ser")==true){
-
-				JButton btnLoadthissave = new JButton(listefichiers[i].substring(0,listefichiers[i].length()-4));
-				btnLoadthissave.addActionListener(new Load_set("resources/saves/"+listefichiers[i], param, this));
-				GridBagConstraints gbc_btnLoadthissave = new GridBagConstraints();
-				gbc_btnLoadthissave.gridwidth = 2;
-				gbc_btnLoadthissave.insets = new Insets(0, 0, 0, 5);
-				gbc_btnLoadthissave.gridx = 0;
-				gbc_btnLoadthissave.gridy = i;
-				getContentPane().add(btnLoadthissave, gbc_btnLoadthissave);
-				{
-					JButton btnDelete = new JButton("DELETE");
-					btnDelete.addActionListener(new Delete("resources/saves/"+listefichiers[i], this));
-					GridBagConstraints gbc_btnDelete = new GridBagConstraints();
-					gbc_btnDelete.gridx = 2;
-					gbc_btnDelete.gridy = i;
-					getContentPane().add(btnDelete, gbc_btnDelete);
+					JButton btnLoadthissave = new JButton(listefichiers[i].substring(0,listefichiers[i].length()-4));
+					btnLoadthissave.addActionListener(new Load_set("resources/saves/"+listefichiers[i], param, this));
+					GridBagConstraints gbc_btnLoadthissave = new GridBagConstraints();
+					gbc_btnLoadthissave.gridwidth = 2;
+					gbc_btnLoadthissave.insets = new Insets(0, 0, 0, 5);
+					gbc_btnLoadthissave.gridx = 0;
+					gbc_btnLoadthissave.gridy = i;
+					getContentPane().add(btnLoadthissave, gbc_btnLoadthissave);
+					{
+						JButton btnDelete = new JButton("DELETE");
+						btnDelete.addActionListener(new Delete("resources/saves/"+listefichiers[i], this));
+						GridBagConstraints gbc_btnDelete = new GridBagConstraints();
+						gbc_btnDelete.gridx = 2;
+						gbc_btnDelete.gridy = i;
+						getContentPane().add(btnDelete, gbc_btnDelete);
+					}
 				}
 			}
 		}
@@ -88,28 +99,43 @@ public class Load extends JDialog {
 
 
 
-		int i;
-		for(i=0;i<listefichiers.length;i++){
-			if(listefichiers[i].endsWith(".ser")==true){
+		if(listefichiers.length==0){
+			setBounds(100, 100, 450, 30);
 
-				JButton btnLoadthissave = new JButton(listefichiers[i].substring(0,listefichiers[i].length()-4));
-				btnLoadthissave.addActionListener(new Load_set("resources/saves/"+listefichiers[i], param, this));
-				GridBagConstraints gbc_btnLoadthissave = new GridBagConstraints();
-				gbc_btnLoadthissave.gridwidth = 2;
-				gbc_btnLoadthissave.insets = new Insets(0, 0, 0, 5);
-				gbc_btnLoadthissave.gridx = 0;
-				gbc_btnLoadthissave.gridy = i;
-				getContentPane().add(btnLoadthissave, gbc_btnLoadthissave);
-				{
-					JButton btnDelete = new JButton("DELETE");
-					btnDelete.addActionListener(new Delete("resources/saves/"+listefichiers[i], this));
-					GridBagConstraints gbc_btnDelete = new GridBagConstraints();
-					gbc_btnDelete.gridx = 2;
-					gbc_btnDelete.gridy = i;
-					getContentPane().add(btnDelete, gbc_btnDelete);
+			JLabel empty=new JLabel("empty");
+			GridBagConstraints gbc = new GridBagConstraints();
+			gbc.insets = new Insets(0, 0, 0, 5);
+			gbc.anchor=GridBagConstraints.CENTER;
+			gbc.gridx = 1;
+			gbc.gridy = 1;
+			add(empty, gbc);
+		}
+		else{
+			int i;
+			for(i=0;i<listefichiers.length;i++){
+				if(listefichiers[i].endsWith(".ser")==true){
+
+					JButton btnLoadthissave = new JButton(listefichiers[i].substring(0,listefichiers[i].length()-4));
+					btnLoadthissave.addActionListener(new Load_set("resources/saves/"+listefichiers[i], param, this));
+					GridBagConstraints gbc_btnLoadthissave = new GridBagConstraints();
+					gbc_btnLoadthissave.gridwidth = 2;
+					gbc_btnLoadthissave.insets = new Insets(0, 0, 0, 5);
+					gbc_btnLoadthissave.gridx = 0;
+					gbc_btnLoadthissave.gridy = i;
+					getContentPane().add(btnLoadthissave, gbc_btnLoadthissave);
+					{
+						JButton btnDelete = new JButton("DELETE");
+						btnDelete.addActionListener(new Delete("resources/saves/"+listefichiers[i], this));
+						GridBagConstraints gbc_btnDelete = new GridBagConstraints();
+						gbc_btnDelete.gridx = 2;
+						gbc_btnDelete.gridy = i;
+						getContentPane().add(btnDelete, gbc_btnDelete);
+					}
 				}
 			}
 		}
+
+
 		this.setVisible(true);
 	}
 

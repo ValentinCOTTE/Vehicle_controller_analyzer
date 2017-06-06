@@ -27,9 +27,9 @@ public class Car extends JDialog {
 
 	int index;
 	Param param;
-	
-	
-	
+
+
+
 
 	private JTextField txtLengthvehicle;
 	private JTextField txtWidthvehicle;
@@ -67,37 +67,53 @@ public class Car extends JDialog {
 	String ctrfreq;
 	String mincom;
 	String initposx;
-	String initV;
-	String initA;
 	String initposy;
+	String initV;
+	int STEP_initV;
+	int LIMIT_initV;
+	String initA;
+	int STEP_initA;
+	int LIMIT_initA;
 	String navigationpoints;
-	
+
 	ArrayList<String> navigation_posX=new ArrayList<String>();
 	ArrayList<String> navigation_laneInf=new ArrayList<String>();
 	ArrayList<String> navigation_laneSup=new ArrayList<String>();
-	
-	
+	private JTextField txtStepinitv;
+	private JTextField txtStepinita;
+	private JTextField txtLimitinita;
+	private JTextField txtLimitinitv;
+
+
 
 	public Car(int index,Param param) {
-		load(param.getCar_list().get(index));
+		try{
+			load(param.getCar_list().get(index));
+		}
+		catch(IndexOutOfBoundsException arg){
+			loadDefault();
+		}
+		catch(NullPointerException arg){
+			loadDefault();
+		}
 		this.index=index;
 		this.param=param;
-		
+
 		this.setTitle("Car "+(index+1));
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
+
 		setBounds(100+(index*20), 100, 450, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0};
+		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 0.0};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		
-		
+
+
 		JLabel lblLengthvehicle = new JLabel("length_vehicle=");
 		GridBagConstraints gbc_lblLengthvehicle = new GridBagConstraints();
 		gbc_lblLengthvehicle.insets = new Insets(0, 0, 5, 5);
@@ -105,9 +121,9 @@ public class Car extends JDialog {
 		gbc_lblLengthvehicle.gridx = 1;
 		gbc_lblLengthvehicle.gridy = 1;
 		contentPane.add(lblLengthvehicle, gbc_lblLengthvehicle);
-		
+
 		txtLengthvehicle = new JTextField();
-		txtLengthvehicle.setText(param.getCar_list().get(index).getLength_vehicle());
+		txtLengthvehicle.setText(length_vehicle);
 		GridBagConstraints gbc_txtLength_vehicle = new GridBagConstraints();
 		gbc_txtLength_vehicle.insets = new Insets(0, 0, 5, 5);
 		gbc_txtLength_vehicle.fill = GridBagConstraints.HORIZONTAL;
@@ -115,7 +131,7 @@ public class Car extends JDialog {
 		gbc_txtLength_vehicle.gridy = 1;
 		contentPane.add(txtLengthvehicle, gbc_txtLength_vehicle);
 		txtLengthvehicle.setColumns(10);
-		
+
 		JLabel lblWidthvehicle = new JLabel("width_vehicle=");
 		GridBagConstraints gbc_lblWidthvehicle = new GridBagConstraints();
 		gbc_lblWidthvehicle.insets = new Insets(0, 0, 5, 5);
@@ -123,9 +139,9 @@ public class Car extends JDialog {
 		gbc_lblWidthvehicle.gridx = 1;
 		gbc_lblWidthvehicle.gridy = 2;
 		contentPane.add(lblWidthvehicle, gbc_lblWidthvehicle);
-		
+
 		txtWidthvehicle = new JTextField();
-		txtWidthvehicle.setText(param.getCar_list().get(index).getWidth_vehicle());
+		txtWidthvehicle.setText(width_vehicle);
 		GridBagConstraints gbc_txtWidthvehicle = new GridBagConstraints();
 		gbc_txtWidthvehicle.insets = new Insets(0, 0, 5, 5);
 		gbc_txtWidthvehicle.fill = GridBagConstraints.HORIZONTAL;
@@ -133,7 +149,7 @@ public class Car extends JDialog {
 		gbc_txtWidthvehicle.gridy = 2;
 		contentPane.add(txtWidthvehicle, gbc_txtWidthvehicle);
 		txtWidthvehicle.setColumns(10);
-		
+
 		lblVmax = new JLabel("v_max=");
 		GridBagConstraints gbc_lblVmax = new GridBagConstraints();
 		gbc_lblVmax.insets = new Insets(0, 0, 5, 5);
@@ -141,9 +157,9 @@ public class Car extends JDialog {
 		gbc_lblVmax.gridx = 1;
 		gbc_lblVmax.gridy = 3;
 		contentPane.add(lblVmax, gbc_lblVmax);
-		
+
 		txtVmax = new JTextField();
-		txtVmax.setText(param.getCar_list().get(index).getVmax());
+		txtVmax.setText(vmax);
 		GridBagConstraints gbc_txtVmax = new GridBagConstraints();
 		gbc_txtVmax.insets = new Insets(0, 0, 5, 5);
 		gbc_txtVmax.fill = GridBagConstraints.HORIZONTAL;
@@ -151,7 +167,7 @@ public class Car extends JDialog {
 		gbc_txtVmax.gridy = 3;
 		contentPane.add(txtVmax, gbc_txtVmax);
 		txtVmax.setColumns(10);
-		
+
 		lblAmin = new JLabel("a_min=");
 		GridBagConstraints gbc_lblAmin = new GridBagConstraints();
 		gbc_lblAmin.insets = new Insets(0, 0, 5, 5);
@@ -159,9 +175,9 @@ public class Car extends JDialog {
 		gbc_lblAmin.gridx = 1;
 		gbc_lblAmin.gridy = 4;
 		contentPane.add(lblAmin, gbc_lblAmin);
-		
+
 		txtAmin = new JTextField();
-		txtAmin.setText(param.getCar_list().get(index).getAmin());
+		txtAmin.setText(amin);
 		GridBagConstraints gbc_txtAmin = new GridBagConstraints();
 		gbc_txtAmin.insets = new Insets(0, 0, 5, 5);
 		gbc_txtAmin.fill = GridBagConstraints.HORIZONTAL;
@@ -169,7 +185,7 @@ public class Car extends JDialog {
 		gbc_txtAmin.gridy = 4;
 		contentPane.add(txtAmin, gbc_txtAmin);
 		txtAmin.setColumns(10);
-		
+
 		lblAmax = new JLabel("a_max=");
 		GridBagConstraints gbc_lblAmax = new GridBagConstraints();
 		gbc_lblAmax.insets = new Insets(0, 0, 5, 5);
@@ -177,9 +193,9 @@ public class Car extends JDialog {
 		gbc_lblAmax.gridx = 1;
 		gbc_lblAmax.gridy = 5;
 		contentPane.add(lblAmax, gbc_lblAmax);
-		
+
 		txtAmax = new JTextField();
-		txtAmax.setText("300");
+		txtAmax.setText(amax);
 		GridBagConstraints gbc_txtAmax = new GridBagConstraints();
 		gbc_txtAmax.anchor = GridBagConstraints.NORTH;
 		gbc_txtAmax.insets = new Insets(0, 0, 5, 5);
@@ -188,7 +204,7 @@ public class Car extends JDialog {
 		gbc_txtAmax.gridy = 5;
 		contentPane.add(txtAmax, gbc_txtAmax);
 		txtAmax.setColumns(10);
-		
+
 		lblCtrfreq = new JLabel("ctr_freq=");
 		GridBagConstraints gbc_lblCtrfreq = new GridBagConstraints();
 		gbc_lblCtrfreq.anchor = GridBagConstraints.EAST;
@@ -196,9 +212,9 @@ public class Car extends JDialog {
 		gbc_lblCtrfreq.gridx = 1;
 		gbc_lblCtrfreq.gridy = 6;
 		contentPane.add(lblCtrfreq, gbc_lblCtrfreq);
-		
+
 		txtCtrfreq = new JTextField();
-		txtCtrfreq.setText(param.getCar_list().get(index).getCtrfreq());
+		txtCtrfreq.setText(ctrfreq);
 		GridBagConstraints gbc_txtCtrfreq = new GridBagConstraints();
 		gbc_txtCtrfreq.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtCtrfreq.anchor = GridBagConstraints.NORTH;
@@ -207,7 +223,7 @@ public class Car extends JDialog {
 		gbc_txtCtrfreq.gridy = 6;
 		contentPane.add(txtCtrfreq, gbc_txtCtrfreq);
 		txtCtrfreq.setColumns(10);
-		
+
 		lblMaxcom = new JLabel("max_com=");
 		GridBagConstraints gbc_lblMaxcom = new GridBagConstraints();
 		gbc_lblMaxcom.anchor = GridBagConstraints.EAST;
@@ -215,9 +231,9 @@ public class Car extends JDialog {
 		gbc_lblMaxcom.gridx = 1;
 		gbc_lblMaxcom.gridy = 7;
 		contentPane.add(lblMaxcom, gbc_lblMaxcom);
-		
+
 		txtMaxcom = new JTextField();
-		txtMaxcom.setText(param.getCar_list().get(index).getMaxcom());
+		txtMaxcom.setText(maxcom);
 		GridBagConstraints gbc_txtMaxcom = new GridBagConstraints();
 		gbc_txtMaxcom.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txtMaxcom.anchor = GridBagConstraints.NORTH;
@@ -226,7 +242,7 @@ public class Car extends JDialog {
 		gbc_txtMaxcom.gridy = 7;
 		contentPane.add(txtMaxcom, gbc_txtMaxcom);
 		txtMaxcom.setColumns(10);
-		
+
 		lblMincom = new JLabel("min_com=");
 		GridBagConstraints gbc_lblMincom = new GridBagConstraints();
 		gbc_lblMincom.anchor = GridBagConstraints.EAST;
@@ -234,9 +250,9 @@ public class Car extends JDialog {
 		gbc_lblMincom.gridx = 1;
 		gbc_lblMincom.gridy = 8;
 		contentPane.add(lblMincom, gbc_lblMincom);
-				
+
 				txtMincom = new JTextField();
-				txtMincom.setText(param.getCar_list().get(index).getMincom());
+				txtMincom.setText(mincom);
 				GridBagConstraints gbc_txtMincom = new GridBagConstraints();
 				gbc_txtMincom.insets = new Insets(0, 0, 5, 5);
 				gbc_txtMincom.fill = GridBagConstraints.HORIZONTAL;
@@ -244,7 +260,7 @@ public class Car extends JDialog {
 				gbc_txtMincom.gridy = 8;
 				contentPane.add(txtMincom, gbc_txtMincom);
 				txtMincom.setColumns(10);
-				
+
 				lblInitposx = new JLabel("init_posX=");
 				GridBagConstraints gbc_lblInitposx = new GridBagConstraints();
 				gbc_lblInitposx.anchor = GridBagConstraints.EAST;
@@ -252,9 +268,9 @@ public class Car extends JDialog {
 				gbc_lblInitposx.gridx = 1;
 				gbc_lblInitposx.gridy = 9;
 				contentPane.add(lblInitposx, gbc_lblInitposx);
-				
+
 				txtInitposx = new JTextField();
-				txtInitposx.setText(param.getCar_list().get(index).getInitposx());
+				txtInitposx.setText(initposx);
 				GridBagConstraints gbc_txtInitposx = new GridBagConstraints();
 				gbc_txtInitposx.insets = new Insets(0, 0, 5, 5);
 				gbc_txtInitposx.fill = GridBagConstraints.HORIZONTAL;
@@ -262,7 +278,7 @@ public class Car extends JDialog {
 				gbc_txtInitposx.gridy = 9;
 				contentPane.add(txtInitposx, gbc_txtInitposx);
 				txtInitposx.setColumns(10);
-				
+
 				lblIntitposy = new JLabel("intit_posY=");
 				GridBagConstraints gbc_lblIntitposy = new GridBagConstraints();
 				gbc_lblIntitposy.anchor = GridBagConstraints.EAST;
@@ -270,9 +286,9 @@ public class Car extends JDialog {
 				gbc_lblIntitposy.gridx = 1;
 				gbc_lblIntitposy.gridy = 10;
 				contentPane.add(lblIntitposy, gbc_lblIntitposy);
-				
+
 				txtInitposy = new JTextField();
-				txtInitposy.setText(param.getCar_list().get(index).getInitposy());
+				txtInitposy.setText(initposy);
 				GridBagConstraints gbc_txtInitposy = new GridBagConstraints();
 				gbc_txtInitposy.insets = new Insets(0, 0, 5, 5);
 				gbc_txtInitposy.fill = GridBagConstraints.HORIZONTAL;
@@ -280,7 +296,7 @@ public class Car extends JDialog {
 				gbc_txtInitposy.gridy = 10;
 				contentPane.add(txtInitposy, gbc_txtInitposy);
 				txtInitposy.setColumns(10);
-				
+
 				lblInitv = new JLabel("init_V=");
 				GridBagConstraints gbc_lblInitv = new GridBagConstraints();
 				gbc_lblInitv.anchor = GridBagConstraints.EAST;
@@ -288,9 +304,9 @@ public class Car extends JDialog {
 				gbc_lblInitv.gridx = 1;
 				gbc_lblInitv.gridy = 11;
 				contentPane.add(lblInitv, gbc_lblInitv);
-				
+
 				txtInitV = new JTextField();
-				txtInitV.setText(param.getCar_list().get(index).getInitV());
+				txtInitV.setText(initV);
 				GridBagConstraints gbc_txtInitV = new GridBagConstraints();
 				gbc_txtInitV.insets = new Insets(0, 0, 5, 5);
 				gbc_txtInitV.fill = GridBagConstraints.HORIZONTAL;
@@ -298,7 +314,27 @@ public class Car extends JDialog {
 				gbc_txtInitV.gridy = 11;
 				contentPane.add(txtInitV, gbc_txtInitV);
 				txtInitV.setColumns(10);
-				
+
+				txtStepinitv = new JTextField();
+				txtStepinitv.setText(Integer.toString(STEP_initV));
+				GridBagConstraints gbc_txtStepinitv = new GridBagConstraints();
+				gbc_txtStepinitv.insets = new Insets(0, 0, 5, 5);
+				gbc_txtStepinitv.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtStepinitv.gridx = 3;
+				gbc_txtStepinitv.gridy = 11;
+				contentPane.add(txtStepinitv, gbc_txtStepinitv);
+				txtStepinitv.setColumns(10);
+
+				txtLimitinitv = new JTextField();
+				txtLimitinitv.setText(Integer.toString(LIMIT_initV));
+				GridBagConstraints gbc_txtLimitinitv = new GridBagConstraints();
+				gbc_txtLimitinitv.insets = new Insets(0, 0, 5, 5);
+				gbc_txtLimitinitv.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtLimitinitv.gridx = 4;
+				gbc_txtLimitinitv.gridy = 11;
+				contentPane.add(txtLimitinitv, gbc_txtLimitinitv);
+				txtLimitinitv.setColumns(10);
+
 				lblInita = new JLabel("init_A=");
 				GridBagConstraints gbc_lblInita = new GridBagConstraints();
 				gbc_lblInita.anchor = GridBagConstraints.EAST;
@@ -306,9 +342,9 @@ public class Car extends JDialog {
 				gbc_lblInita.gridx = 1;
 				gbc_lblInita.gridy = 12;
 				contentPane.add(lblInita, gbc_lblInita);
-				
+
 				txtInitA = new JTextField();
-				txtInitA.setText(param.getCar_list().get(index).getInitA());
+				txtInitA.setText(initA);
 				GridBagConstraints gbc_txtInitA = new GridBagConstraints();
 				gbc_txtInitA.insets = new Insets(0, 0, 5, 5);
 				gbc_txtInitA.fill = GridBagConstraints.HORIZONTAL;
@@ -316,7 +352,27 @@ public class Car extends JDialog {
 				gbc_txtInitA.gridy = 12;
 				contentPane.add(txtInitA, gbc_txtInitA);
 				txtInitA.setColumns(10);
-				
+
+				txtStepinita = new JTextField();
+				txtStepinita.setText(Integer.toString(STEP_initA));
+				GridBagConstraints gbc_txtStepinita = new GridBagConstraints();
+				gbc_txtStepinita.insets = new Insets(0, 0, 5, 5);
+				gbc_txtStepinita.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtStepinita.gridx = 3;
+				gbc_txtStepinita.gridy = 12;
+				contentPane.add(txtStepinita, gbc_txtStepinita);
+				txtStepinita.setColumns(10);
+
+				txtLimitinita = new JTextField();
+				txtLimitinita.setText(Integer.toString(LIMIT_initA));
+				GridBagConstraints gbc_txtLimitinita = new GridBagConstraints();
+				gbc_txtLimitinita.insets = new Insets(0, 0, 5, 5);
+				gbc_txtLimitinita.fill = GridBagConstraints.HORIZONTAL;
+				gbc_txtLimitinita.gridx = 4;
+				gbc_txtLimitinita.gridy = 12;
+				contentPane.add(txtLimitinita, gbc_txtLimitinita);
+				txtLimitinita.setColumns(10);
+
 				lblNavigationpoints = new JLabel("navigation_points=");
 				GridBagConstraints gbc_lblNavigationpoints = new GridBagConstraints();
 				gbc_lblNavigationpoints.anchor = GridBagConstraints.EAST;
@@ -324,9 +380,9 @@ public class Car extends JDialog {
 				gbc_lblNavigationpoints.gridx = 1;
 				gbc_lblNavigationpoints.gridy = 13;
 				contentPane.add(lblNavigationpoints, gbc_lblNavigationpoints);
-				
+
 				txtNavigationpoints = new JTextField();
-				txtNavigationpoints.setText(param.getCar_list().get(index).getNavigationpoints());
+				txtNavigationpoints.setText(navigationpoints);
 				GridBagConstraints gbc_txtNavigationpoints = new GridBagConstraints();
 				gbc_txtNavigationpoints.insets = new Insets(0, 0, 5, 5);
 				gbc_txtNavigationpoints.fill = GridBagConstraints.HORIZONTAL;
@@ -334,7 +390,7 @@ public class Car extends JDialog {
 				gbc_txtNavigationpoints.gridy = 13;
 				contentPane.add(txtNavigationpoints, gbc_txtNavigationpoints);
 				txtNavigationpoints.setColumns(10);
-				
+
 				lblNavigationlist = new JLabel("navigation_list=");
 				GridBagConstraints gbc_lblNavigationlist = new GridBagConstraints();
 				gbc_lblNavigationlist.anchor = GridBagConstraints.EAST;
@@ -342,7 +398,7 @@ public class Car extends JDialog {
 				gbc_lblNavigationlist.gridx = 1;
 				gbc_lblNavigationlist.gridy = 14;
 				contentPane.add(lblNavigationlist, gbc_lblNavigationlist);
-				
+
 				btnDefine = new JButton("Define");
 				btnDefine.addActionListener(new Define_navigation(param, this));
 				GridBagConstraints gbc_btnDefine = new GridBagConstraints();
@@ -351,39 +407,96 @@ public class Car extends JDialog {
 				gbc_btnDefine.gridx = 2;
 				gbc_btnDefine.gridy = 14;
 				contentPane.add(btnDefine, gbc_btnDefine);
-		
+
 				JButton btnSave = new JButton("Save");
 				btnSave.addActionListener(new Save_car(param,this));
 				GridBagConstraints gbc_btnSave = new GridBagConstraints();
+				gbc_btnSave.insets = new Insets(0, 0, 0, 5);
 				gbc_btnSave.gridwidth = 5;
 				gbc_btnSave.gridx = 0;
 				gbc_btnSave.gridy = 15;
 				contentPane.add(btnSave, gbc_btnSave);
-				
+
 				this.setVisible(true);
-		
+
 	}
 
 	public void load(Car_set set){
 		this.length_vehicle=set.getLength_vehicle();
+
 		this.width_vehicle=set.getWidth_vehicle();
+
 		this.vmax=set.getVmax();
+
 		this.amin=set.getAmin();
+
 		this.amax=set.getAmax();
+
 		this.maxcom=set.getMaxcom();
+
 		this.ctrfreq=set.getCtrfreq();
-		this.mincom=set.getAmin();
+
+		this.mincom=set.getMincom();
+
 		this.initposx=set.getInitposx();
+
 		this.initV=set.getInitV();
+		this.STEP_initV=set.getSTEP_initV();
+		this.LIMIT_initV=set.getLIMIT_initV();
+
 		this.initA=set.getInitA();
+		this.STEP_initA=set.getSTEP_initA();
+		this.LIMIT_initA=set.getLIMIT_initA();
+
 		this.initposy=set.getInitposy();
+
 		this.navigationpoints=set.getNavigationpoints();
-		
+
 		this.navigation_posX=set.getNavigation_posX();
+
 		this.navigation_laneInf=set.getNavigation_laneInf();
+
 		this.navigation_laneSup=set.getNavigation_laneSup();
 	}
-	
+
+	public void loadDefault(){
+		this.length_vehicle="";
+
+		this.width_vehicle="";
+
+		this.vmax="";
+
+		this.amin="";
+
+		this.amax="";
+
+		this.maxcom="";
+
+		this.ctrfreq="";
+
+		this.mincom="";
+
+		this.initposx="";
+
+		this.initV="";
+		this.STEP_initV=1;
+		this.LIMIT_initV=0;
+
+		this.initA="";
+		this.STEP_initA=1;
+		this.LIMIT_initA=0;
+
+		this.initposy="";
+
+		this.navigationpoints="";
+
+		this.navigation_posX=new ArrayList<String>();
+
+		this.navigation_laneInf=new ArrayList<String>();
+
+		this.navigation_laneSup=new ArrayList<String>();
+	}
+
 	public ArrayList<String> getNavigation_posX() {
 		return navigation_posX;
 	}
@@ -414,6 +527,10 @@ public class Car extends JDialog {
 
 	public void setParam(Param param) {
 		this.param = param;
+	}
+
+	public int getIndex() {
+		return index;
 	}
 
 	public String getLength_vehicle() {
@@ -461,9 +578,30 @@ public class Car extends JDialog {
 		return initposx;
 	}
 
+	public String getInitposy() {
+		this.initposy=this.getTxtInitposy().getText();
+		return initposy;
+	}
+
 	public String getInitV() {
 		this.initV=this.getTxtInitV().getText();
 		return initV;
+	}
+
+	public int getSTEP_initV() {
+		this.STEP_initV=Integer.parseInt(this.txtStepinitv.getText());
+		if(STEP_initV<1){
+			return Integer.parseInt(this.getTxtInitV().getText());
+		}
+		return STEP_initV;
+	}
+
+	public int getLIMIT_initV() {
+		this.LIMIT_initV=Integer.parseInt(this.txtLimitinitv.getText());
+		if(LIMIT_initV<Integer.parseInt(this.getTxtInitV().getText())){
+			return Integer.parseInt(this.getTxtInitV().getText());
+		}
+		return LIMIT_initV;
 	}
 
 	public String getInitA() {
@@ -471,9 +609,20 @@ public class Car extends JDialog {
 		return initA;
 	}
 
-	public String getInitposy() {
-		this.initposy=this.getTxtInitposy().getText();
-		return initposy;
+	public int getSTEP_initA() {
+		this.STEP_initA=Integer.parseInt(this.txtStepinita.getText());
+		if(STEP_initA<1){
+			return Integer.parseInt(this.txtLimitinita.getText());
+		}
+		return STEP_initA;
+	}
+
+	public int getLIMIT_initA() {
+		this.LIMIT_initA=Integer.parseInt(this.txtLimitinita.getText());
+		if(LIMIT_initA<1){
+			return Integer.parseInt(initA);
+		}
+		return LIMIT_initA;
 	}
 
 	public String getNavigationpoints() {
@@ -484,7 +633,7 @@ public class Car extends JDialog {
 	public Param getParam() {
 		return param;
 	}
-	
+
 	public JTextField getTxtLengthvehicle() {
 		return txtLengthvehicle;
 	}
@@ -589,7 +738,35 @@ public class Car extends JDialog {
 		this.txtNavigationpoints = txtNavigationpoints;
 	}
 
-	public int getIndex() {
-		return index;
+	public JTextField getTxtStepinitv() {
+		return txtStepinitv;
+	}
+
+	public void setTxtStepinitv(JTextField txtStepinitv) {
+		this.txtStepinitv = txtStepinitv;
+	}
+
+	public JTextField getTxtStepinita() {
+		return txtStepinita;
+	}
+
+	public void setTxtStepinita(JTextField txtStepinita) {
+		this.txtStepinita = txtStepinita;
+	}
+
+	public JTextField getTxtLimitinita() {
+		return txtLimitinita;
+	}
+
+	public void setTxtLimitinita(JTextField txtLimitinita) {
+		this.txtLimitinita = txtLimitinita;
+	}
+
+	public JTextField getTxtLimitinitv() {
+		return txtLimitinitv;
+	}
+
+	public void setTxtLimitinitv(JTextField txtLimitinitv) {
+		this.txtLimitinitv = txtLimitinitv;
 	}
 }
