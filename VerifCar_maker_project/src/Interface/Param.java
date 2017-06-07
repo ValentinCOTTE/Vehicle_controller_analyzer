@@ -72,30 +72,30 @@ public class Param extends JPanel {
 	private JButton btnLoadSettings;
 
 
-	String scale;
-	String S;
-	String L;
-	String R;
-	String V_min;
-	String GranA;
-	String W;
-	String NormX; //( >= (GranA*S/scale)/2 )
-	String nb_lane; //( >= 2 )
-	String end_junction; //( <= L )
-	String begin_junction; //( <= end_junction )
-	ArrayList<String> marking=new ArrayList<String>(); //[nb_lane + 1] ( marking[i] <= marking[i-1] ) to build as a list {posY, ... , posY}
-	String nb_car; //( >= 2 )
-	String safety_length;
-	String safety_width;
-	String traj_length;
-	String delay_step;
-	String max_delay; //(integer multiple of delay_step)
+	int scale;
+	int S;
+	int L;
+	int R;
+	int V_min;
+	int GranA;
+	int W;
+	int NormX; //( >= (GranA*S/scale)/2 )
+	int nb_lane; //( >= 2 )
+	int end_junction; //( <= L )
+	int begin_junction; //( <= end_junction )
+	ArrayList<Integer> marking=new ArrayList<Integer>(); //[nb_lane + 1] ( marking[i] <= marking[i-1] ) to build as a list {posY, ... , posY}
+	int nb_car; //( >= 2 )
+	int safety_length;
+	int safety_width;
+	int traj_length;
+	int delay_step;
+	int max_delay; //(integer multiple of delay_step)
 	ArrayList<Car_set> Car_list=new ArrayList<Car_set>();
 
-	String navigation_points_max;
-	String V_max;
-	String A_min;
-	String A_max;
+	int navigation_points_max;
+	int V_max;
+	int A_min;
+	int A_max;
 
 
 	public Param(Application a,Param_set set) {
@@ -130,7 +130,7 @@ public class Param extends JPanel {
 		add(lblScale, gbc_lblScale);
 
 		txtscale = new JTextField();
-		txtscale.setText(scale);
+		txtscale.setText(""+scale);
 		GridBagConstraints gbc_txtscale = new GridBagConstraints();
 		gbc_txtscale.insets = new Insets(0, 0, 5, 0);
 		gbc_txtscale.fill = GridBagConstraints.HORIZONTAL;
@@ -148,7 +148,7 @@ public class Param extends JPanel {
 		add(lblS, gbc_lblS);
 
 		txtS = new JTextField();
-		txtS.setText(S);
+		txtS.setText(""+S);
 		GridBagConstraints gbc_txtS = new GridBagConstraints();
 		gbc_txtS.insets = new Insets(0, 0, 5, 0);
 		gbc_txtS.fill = GridBagConstraints.HORIZONTAL;
@@ -166,7 +166,7 @@ public class Param extends JPanel {
 		add(lblL, gbc_lblL);
 
 		txtL = new JTextField();
-		txtL.setText(L);
+		txtL.setText(""+L);
 		GridBagConstraints gbc_txtL = new GridBagConstraints();
 		gbc_txtL.insets = new Insets(0, 0, 5, 0);
 		gbc_txtL.fill = GridBagConstraints.HORIZONTAL;
@@ -184,7 +184,7 @@ public class Param extends JPanel {
 		add(lblR, gbc_lblR);
 
 		txtR = new JTextField();
-		txtR.setText(R);
+		txtR.setText(""+R);
 		GridBagConstraints gbc_txtR = new GridBagConstraints();
 		gbc_txtR.insets = new Insets(0, 0, 5, 0);
 		gbc_txtR.fill = GridBagConstraints.HORIZONTAL;
@@ -202,7 +202,7 @@ public class Param extends JPanel {
 		add(lblVmin, gbc_lblVmin);
 
 		txtV_min = new JTextField();
-		txtV_min.setText(V_min);
+		txtV_min.setText(""+V_min);
 		GridBagConstraints gbc_txtV_min = new GridBagConstraints();
 		gbc_txtV_min.insets = new Insets(0, 0, 5, 0);
 		gbc_txtV_min.fill = GridBagConstraints.HORIZONTAL;
@@ -220,7 +220,7 @@ public class Param extends JPanel {
 		add(lblGranA, gbc_lblGranA);
 
 		txtGranA = new JTextField();
-		txtGranA.setText(GranA);
+		txtGranA.setText(""+GranA);
 		GridBagConstraints gbc_txtGranA = new GridBagConstraints();
 		gbc_txtGranA.insets = new Insets(0, 0, 5, 0);
 		gbc_txtGranA.fill = GridBagConstraints.HORIZONTAL;
@@ -238,7 +238,7 @@ public class Param extends JPanel {
 		add(lblW, gbc_lblW);
 
 		txtW = new JTextField();
-		txtW.setText(W);
+		txtW.setText(""+W);
 		GridBagConstraints gbc_txtW = new GridBagConstraints();
 		gbc_txtW.insets = new Insets(0, 0, 5, 0);
 		gbc_txtW.fill = GridBagConstraints.HORIZONTAL;
@@ -256,7 +256,7 @@ public class Param extends JPanel {
 		add(lblNormx, gbc_lblNormx);
 
 		txtNormX = new JTextField();
-		txtNormX.setText(NormX);
+		txtNormX.setText(""+NormX);
 		GridBagConstraints gbc_txtNormX = new GridBagConstraints();
 		gbc_txtNormX.insets = new Insets(0, 0, 5, 0);
 		gbc_txtNormX.fill = GridBagConstraints.HORIZONTAL;
@@ -274,7 +274,7 @@ public class Param extends JPanel {
 		add(lblNblane, gbc_lblNblane);
 
 		txtnb_lane = new JTextField();
-		txtnb_lane.setText(nb_lane);
+		txtnb_lane.setText(""+nb_lane);
 		GridBagConstraints gbc_txtnb_lane = new GridBagConstraints();
 		gbc_txtnb_lane.insets = new Insets(0, 0, 5, 0);
 		gbc_txtnb_lane.fill = GridBagConstraints.HORIZONTAL;
@@ -292,7 +292,7 @@ public class Param extends JPanel {
 		add(lblEndjunction, gbc_lblEndjunction);
 
 		txtend_junction = new JTextField();
-		txtend_junction.setText(end_junction);
+		txtend_junction.setText(""+end_junction);
 		GridBagConstraints gbc_txtend_junction = new GridBagConstraints();
 		gbc_txtend_junction.insets = new Insets(0, 0, 5, 0);
 		gbc_txtend_junction.fill = GridBagConstraints.HORIZONTAL;
@@ -310,7 +310,7 @@ public class Param extends JPanel {
 		add(lblBeginjunction, gbc_lblBeginjunction);
 
 		txtbegin_junction = new JTextField();
-		txtbegin_junction.setText(begin_junction);
+		txtbegin_junction.setText(""+begin_junction);
 		GridBagConstraints gbc_txtbegin_junction = new GridBagConstraints();
 		gbc_txtbegin_junction.insets = new Insets(0, 0, 5, 0);
 		gbc_txtbegin_junction.fill = GridBagConstraints.HORIZONTAL;
@@ -345,7 +345,7 @@ public class Param extends JPanel {
 		add(lblnb_car, gbc_lblnb_car);
 
 		txtnb_car = new JTextField();
-		txtnb_car.setText(nb_car);
+		txtnb_car.setText(""+nb_car);
 		GridBagConstraints gbc_txtnb_car = new GridBagConstraints();
 		gbc_txtnb_car.insets = new Insets(0, 0, 5, 0);
 		gbc_txtnb_car.fill = GridBagConstraints.HORIZONTAL;
@@ -363,7 +363,7 @@ public class Param extends JPanel {
 		add(lblSafetylength, gbc_lblSafetylength);
 
 		txtsafety_length = new JTextField();
-		txtsafety_length.setText(safety_length);
+		txtsafety_length.setText(""+safety_length);
 		GridBagConstraints gbc_txtsafety_length = new GridBagConstraints();
 		gbc_txtsafety_length.insets = new Insets(0, 0, 5, 0);
 		gbc_txtsafety_length.fill = GridBagConstraints.HORIZONTAL;
@@ -381,7 +381,7 @@ public class Param extends JPanel {
 		add(lblSafetywidth, gbc_lblSafetywidth);
 
 		txtsafety_width = new JTextField();
-		txtsafety_width.setText(safety_width);
+		txtsafety_width.setText(""+safety_width);
 		GridBagConstraints gbc_txtsafety_width = new GridBagConstraints();
 		gbc_txtsafety_width.insets = new Insets(0, 0, 5, 0);
 		gbc_txtsafety_width.fill = GridBagConstraints.HORIZONTAL;
@@ -399,7 +399,7 @@ public class Param extends JPanel {
 		add(lbltraj_length, gbc_lbltraj_length);
 
 		txttraj_length = new JTextField();
-		txttraj_length.setText(traj_length);
+		txttraj_length.setText(""+traj_length);
 		GridBagConstraints gbc_txttraj_length = new GridBagConstraints();
 		gbc_txttraj_length.insets = new Insets(0, 0, 5, 0);
 		gbc_txttraj_length.fill = GridBagConstraints.HORIZONTAL;
@@ -417,7 +417,7 @@ public class Param extends JPanel {
 		add(lblDelayStep, gbc_lblDelayStep);
 
 		txtdelay_step = new JTextField();
-		txtdelay_step.setText(delay_step);
+		txtdelay_step.setText(""+delay_step);
 		GridBagConstraints gbc_txtdelay_step = new GridBagConstraints();
 		gbc_txtdelay_step.insets = new Insets(0, 0, 5, 0);
 		gbc_txtdelay_step.fill = GridBagConstraints.HORIZONTAL;
@@ -435,7 +435,7 @@ public class Param extends JPanel {
 		add(lblMaxdelay, gbc_lblMaxdelay);
 
 		txtmax_delay = new JTextField();
-		txtmax_delay.setText(max_delay);
+		txtmax_delay.setText(""+max_delay);
 		GridBagConstraints gbc_txtmax_delay = new GridBagConstraints();
 		gbc_txtmax_delay.insets = new Insets(0, 0, 5, 0);
 		gbc_txtmax_delay.fill = GridBagConstraints.HORIZONTAL;
@@ -594,35 +594,39 @@ public class Param extends JPanel {
 
 	}
 
-	public String getNavigation_points_max() {
+	//calculable
+	public int getNavigation_points_max() {
 		return navigation_points_max;
 	}
 
-	public void setNavigation_points_max(String navigation_points_max) {
+	public void setNavigation_points_max(int navigation_points_max) {
 		this.navigation_points_max = navigation_points_max;
 	}
 
-	public String getV_max() {
+	//calculable
+	public int getV_max() {
 		return V_max;
 	}
 
-	public void setV_max(String v_max) {
+	public void setV_max(int v_max) {
 		V_max = v_max;
 	}
 
-	public String getA_min() {
+	//calculable
+	public int getA_min() {
 		return A_min;
 	}
 
-	public void setA_min(String a_min) {
+	public void setA_min(int a_min) {
 		A_min = a_min;
 	}
 
-	public String getA_max() {
+	//calculable
+	public int getA_max() {
 		return A_max;
 	}
 
-	public void setA_max(String a_max) {
+	public void setA_max(int a_max) {
 		A_max = a_max;
 	}
 
@@ -634,96 +638,96 @@ public class Param extends JPanel {
 		Car_list = car_list;
 	}
 
-	public String getScale() {
-		this.scale=txtscale.getText();
+	public int getScale() {
+		this.scale=Integer.parseInt(txtscale.getText());
 		return scale;
 	}
 
-	public String getS() {
-		this.S=txtS.getText();
+	public int getS() {
+		this.S=Integer.parseInt(txtS.getText());
 		return S;
 	}
 
-	public String getL() {
-		this.L=txtL.getText();
+	public int getL() {
+		this.L=Integer.parseInt(txtL.getText());
 		return L;
 	}
 
-	public String getR() {
-		this.R=txtR.getText();
+	public int getR() {
+		this.R=Integer.parseInt(txtR.getText());
 		return R;
 	}
 
-	public String getV_min() {
-		this.V_min=txtV_min.getText();
+	public int getV_min() {
+		this.V_min=Integer.parseInt(txtV_min.getText());
 		return V_min;
 	}
 
-	public String getGranA() {
-		this.GranA=txtGranA.getText();
+	public int getGranA() {
+		this.GranA=Integer.parseInt(txtGranA.getText());
 		return GranA;
 	}
 
-	public String getW() {
-		this.W=txtW.getText();
+	public int getW() {
+		this.W=Integer.parseInt(txtW.getText());
 		return W;
 	}
 
-	public String getNormX() {
-		this.NormX=txtNormX.getText();
+	public int getNormX() {
+		this.NormX=Integer.parseInt(txtNormX.getText());
 		return NormX;
 	}
 
-	public String getNb_lane() {
-		this.nb_lane=txtnb_lane.getText();
+	public int getNb_lane() {
+		this.nb_lane=Integer.parseInt(txtnb_lane.getText());
 		return nb_lane;
 	}
 
-	public String getEnd_junction() {
-		this.end_junction=txtend_junction.getText();
+	public int getEnd_junction() {
+		this.end_junction=Integer.parseInt(txtend_junction.getText());
 		return end_junction;
 	}
 
-	public String getBegin_junction() {
-		this.begin_junction=txtbegin_junction.getText();
+	public int getBegin_junction() {
+		this.begin_junction=Integer.parseInt(txtbegin_junction.getText());
 		return begin_junction;
 	}
 
-	public void setMarking(ArrayList<String> marking) {
+	public void setMarking(ArrayList<Integer> marking) {
 		this.marking= marking;
 	}
 
-	public ArrayList<String> getMarking() {
+	public ArrayList<Integer> getMarking() {
 		return marking;
 	}
 
-	public String getNb_car() {
-		this.nb_car=txtnb_car.getText();
+	public int getNb_car() {
+		this.nb_car=Integer.parseInt(txtnb_car.getText());
 		return nb_car;
 	}
 
-	public String getSafety_length() {
-		safety_length=txtsafety_length.getText();
+	public int getSafety_length() {
+		safety_length=Integer.parseInt(txtsafety_length.getText());
 		return safety_length;
 	}
 
-	public String getSafety_width() {
-		safety_width=txtsafety_width.getText();
+	public int getSafety_width() {
+		safety_width=Integer.parseInt(txtsafety_width.getText());
 		return safety_width;
 	}
 
-	public String getTraj_length() {
-		traj_length=txttraj_length.getText();
+	public int getTraj_length() {
+		traj_length=Integer.parseInt(txttraj_length.getText());
 		return traj_length;
 	}
 
-	public String getDelay_step() {
-		delay_step=txtdelay_step.getText();
+	public int getDelay_step() {
+		delay_step=Integer.parseInt(txtdelay_step.getText());
 		return delay_step;
 	}
 
-	public String getMax_delay() {
-		max_delay=txtmax_delay.getText();
+	public int getMax_delay() {
+		max_delay=Integer.parseInt(txtmax_delay.getText());
 		return max_delay;
 	}
 

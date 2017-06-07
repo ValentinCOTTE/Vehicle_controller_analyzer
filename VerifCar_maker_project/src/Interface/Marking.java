@@ -25,8 +25,8 @@ public class Marking extends JDialog {
 	ArrayList<String> PosY= new ArrayList<String>();
 	int nb_lane;
 	Param param;
-	
-	
+
+
 
 	public Param getParam() {
 		return param;
@@ -35,10 +35,10 @@ public class Marking extends JDialog {
 	public Marking(int nb_lane,Param param) {
 		this.nb_lane=nb_lane;
 		this.param=param;
-		
+
 		this.setTitle("Marking");
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		
+
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -49,27 +49,27 @@ public class Marking extends JDialog {
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
-		
+
 		ArrayList<JLabel> lblPosY= new ArrayList<JLabel>();
 		ArrayList<GridBagConstraints> gbc_lblPosY= new ArrayList<GridBagConstraints>();
 		ArrayList<GridBagConstraints> gbc_textPosY= new ArrayList<GridBagConstraints>();
 		int i;
 		for(i=0; i<nb_lane-1;i++){
 			lblPosY.add(i, new JLabel("posY"+(i+1)+"="));
-			gbc_lblPosY.add(i, new GridBagConstraints()); 
+			gbc_lblPosY.add(i, new GridBagConstraints());
 			gbc_lblPosY.get(i).insets = new Insets(0, 0, 5, 5);
 			gbc_lblPosY.get(i).anchor = GridBagConstraints.EAST;
 			gbc_lblPosY.get(i).gridx = 1;
 			gbc_lblPosY.get(i).gridy = i+1;
 			contentPane.add(lblPosY.get(i), gbc_lblPosY.get(i));
-			
+
 			textPosY.add(i, new JTextField());
 			try{
-				textPosY.get(i).setText(param.getMarking().get(i));
+				textPosY.get(i).setText(""+param.getMarking().get(i));
 			}catch(IndexOutOfBoundsException e){
-				
+
 			}
-			
+
 			gbc_textPosY.add(i, new GridBagConstraints());
 			gbc_textPosY.get(i).insets = new Insets(0, 0, 5, 0);
 			gbc_textPosY.get(i).fill = GridBagConstraints.HORIZONTAL;
@@ -78,7 +78,7 @@ public class Marking extends JDialog {
 			contentPane.add(textPosY.get(i), gbc_textPosY.get(i));
 			textPosY.get(i).setColumns(10);
 		}
-		
+
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new Save_marking(this));
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
@@ -86,10 +86,10 @@ public class Marking extends JDialog {
 		gbc_btnSave.gridx = 0;
 		gbc_btnSave.gridy = i+2;
 		contentPane.add(btnSave, gbc_btnSave);
-		
+
 		this.setVisible(true);
 
-		
+
 	}
 
 	public int getNb_lane() {

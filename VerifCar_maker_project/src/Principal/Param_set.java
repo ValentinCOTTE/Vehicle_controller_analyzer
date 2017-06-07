@@ -6,38 +6,38 @@ import java.util.ArrayList;
 import Interface.Car;
 
 public class Param_set implements Serializable{
-	
+
 	private static final long serialVersionUID = 1422449543046132620L;
-	
-	String scale;
-	String S;
-	String L;
-	String R;
-	String V_min;
-	String GranA;
-	String W;
-	String NormX; //( >= (GranA*S/scale)/2 )
-	String nb_lane; //( >= 2 )
-	String end_junction; //( <= L )
-	String begin_junction; //( <= end_junction )
-	ArrayList<String> marking; //[nb_lane + 1] ( marking[i] <= marking[i-1] ) to build as a list {posY, ... , posY}
-	String nb_car; //( >= 2 )
-	String safety_length;
-	String safety_width;
-	String traj_length;
-	String delay_step;
-	String max_delay; //(integer multiple of delay_step)
+
+	int scale;
+	int S;
+	int L;
+	int R;
+	int V_min;
+	int GranA;
+	int W;
+	int NormX; //( >= (GranA*S/scale)/2 )
+	int nb_lane; //( >= 2 )
+	int end_junction; //( <= L )
+	int begin_junction; //( <= end_junction )
+	ArrayList<Integer> marking; //[nb_lane + 1] ( marking[i] <= marking[i-1] ) to build as a list {posY, ... , posY}
+	int nb_car; //( >= 2 )
+	int safety_length;
+	int safety_width;
+	int traj_length;
+	int delay_step;
+	int max_delay; //(integer multiple of delay_step)
 	ArrayList<Car_set> Car_list;
-	
-	String navigation_points_max;
-	String V_max;
-	String A_min;
-	String A_max;
-	
-	public Param_set(String scale, String s, String l, String r, String v_min, String granA, String w, String normX,
-			String nb_lane, String end_junction, String begin_junction, ArrayList<String> marking, String nb_car,
-			String safety_length, String safety_width, String traj_length, String delay_step, String max_delay,
-			ArrayList<Car_set> car_list, String navigation_points_max, String v_max, String a_min, String a_max) {
+
+	int navigation_points_max;
+	int V_max;
+	int A_min;
+	int A_max;
+
+	public Param_set(int scale, int s, int l, int r, int v_min, int granA, int w, int normX,
+			int nb_lane, int end_junction, int begin_junction, ArrayList<Integer> marking, int nb_car,
+			int safety_length, int safety_width, int traj_length, int delay_step, int max_delay,
+			ArrayList<Car_set> car_list, int navigation_points_max, int v_max, int a_min, int a_max) {
 		super();
 		this.scale = scale;
 		this.S = s;
@@ -64,147 +64,147 @@ public class Param_set implements Serializable{
 		this.A_max = a_max;
 	}
 
-	public String getScale() {
+	public int getScale() {
 		return scale;
 	}
 
-	public void setScale(String scale) {
+	public void setScale(int scale) {
 		this.scale = scale;
 	}
 
-	public String getS() {
+	public int getS() {
 		return S;
 	}
 
-	public void setS(String s) {
+	public void setS(int s) {
 		S = s;
 	}
 
-	public String getL() {
+	public int getL() {
 		return L;
 	}
 
-	public void setL(String l) {
+	public void setL(int l) {
 		L = l;
 	}
 
-	public String getR() {
+	public int getR() {
 		return R;
 	}
 
-	public void setR(String r) {
+	public void setR(int r) {
 		R = r;
 	}
 
-	public String getV_min() {
+	public int getV_min() {
 		return V_min;
 	}
 
-	public void setV_min(String v_min) {
+	public void setV_min(int v_min) {
 		V_min = v_min;
 	}
 
-	public String getGranA() {
+	public int getGranA() {
 		return GranA;
 	}
 
-	public void setGranA(String granA) {
+	public void setGranA(int granA) {
 		GranA = granA;
 	}
 
-	public String getW() {
+	public int getW() {
 		return W;
 	}
 
-	public void setW(String w) {
+	public void setW(int w) {
 		W = w;
 	}
 
-	public String getNormX() {
+	public int getNormX() {
 		return NormX;
 	}
 
-	public void setNormX(String normX) {
+	public void setNormX(int normX) {
 		NormX = normX;
 	}
 
-	public String getNb_lane() {
+	public int getNb_lane() {
 		return nb_lane;
 	}
 
-	public void setNb_lane(String nb_lane) {
+	public void setNb_lane(int nb_lane) {
 		this.nb_lane = nb_lane;
 	}
 
-	public String getEnd_junction() {
+	public int getEnd_junction() {
 		return end_junction;
 	}
 
-	public void setEnd_junction(String end_junction) {
+	public void setEnd_junction(int end_junction) {
 		this.end_junction = end_junction;
 	}
 
-	public String getBegin_junction() {
+	public int getBegin_junction() {
 		return begin_junction;
 	}
 
-	public void setBegin_junction(String begin_junction) {
+	public void setBegin_junction(int begin_junction) {
 		this.begin_junction = begin_junction;
 	}
 
-	public ArrayList<String> getMarking() {
+	public ArrayList<Integer> getMarking() {
 		return marking;
 	}
 
-	public void setMarking(ArrayList<String> marking) {
+	public void setMarking(ArrayList<Integer> marking) {
 		this.marking = marking;
 	}
 
-	public String getNb_car() {
+	public int getNb_car() {
 		return nb_car;
 	}
 
-	public void setNb_car(String nb_car) {
+	public void setNb_car(int nb_car) {
 		this.nb_car = nb_car;
 	}
 
-	public String getSafety_length() {
+	public int getSafety_length() {
 		return safety_length;
 	}
 
-	public void setSafety_length(String safety_length) {
+	public void setSafety_length(int safety_length) {
 		this.safety_length = safety_length;
 	}
 
-	public String getSafety_width() {
+	public int getSafety_width() {
 		return safety_width;
 	}
 
-	public void setSafety_width(String safety_width) {
+	public void setSafety_width(int safety_width) {
 		this.safety_width = safety_width;
 	}
 
-	public String getTraj_length() {
+	public int getTraj_length() {
 		return traj_length;
 	}
 
-	public void setTraj_length(String traj_length) {
+	public void setTraj_length(int traj_length) {
 		this.traj_length = traj_length;
 	}
 
-	public String getDelay_step() {
+	public int getDelay_step() {
 		return delay_step;
 	}
 
-	public void setDelay_step(String delay_step) {
+	public void setDelay_step(int delay_step) {
 		this.delay_step = delay_step;
 	}
 
-	public String getMax_delay() {
+	public int getMax_delay() {
 		return max_delay;
 	}
 
-	public void setMax_delay(String max_delay) {
+	public void setMax_delay(int max_delay) {
 		this.max_delay = max_delay;
 	}
 
@@ -216,35 +216,35 @@ public class Param_set implements Serializable{
 		Car_list = car_list;
 	}
 
-	public String getNavigation_points_max() {
+	public int getNavigation_points_max() {
 		return navigation_points_max;
 	}
 
-	public void setNavigation_points_max(String navigation_points_max) {
+	public void setNavigation_points_max(int navigation_points_max) {
 		this.navigation_points_max = navigation_points_max;
 	}
 
-	public String getV_max() {
+	public int getV_max() {
 		return V_max;
 	}
 
-	public void setV_max(String v_max) {
+	public void setV_max(int v_max) {
 		V_max = v_max;
 	}
 
-	public String getA_min() {
+	public int getA_min() {
 		return A_min;
 	}
 
-	public void setA_min(String a_min) {
+	public void setA_min(int a_min) {
 		A_min = a_min;
 	}
-	
-	public String getA_max() {
+
+	public int getA_max() {
 		return A_max;
 	}
 
-	public void setA_max(String a_max) {
+	public void setA_max(int a_max) {
 		A_min = a_max;
 	}
 

@@ -8,7 +8,7 @@ import Interface.Car;
 import Interface.Error_message;
 
 public class Define_navigation implements ActionListener {
-	
+
 	Param param;
 	Car car;
 	public Define_navigation(Param param,Car car)
@@ -17,30 +17,30 @@ public class Define_navigation implements ActionListener {
 		this.car=car;
 	}
 	public void actionPerformed(ActionEvent arg0) {
-		
+
 		//error zone
 		boolean evryThingIsOk=true;
 		try{
-			Integer.parseInt(car.getNavigationpoints());
+			Integer.parseInt(car.getTxtNavigationpoints().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("navigation_points must be a decimal value");
 			evryThingIsOk=false;
-		}	
-		
-		if(Integer.parseInt(car.getNavigationpoints())<0){
+		}
+
+		if(car.getNavigationpoints()<0){
 			new Error_message("navigation_points can not be negative value");
 			evryThingIsOk=false;
 		}
 		try{
-			Integer.parseInt(param.getL());
+			Integer.parseInt(param.getTxtL().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("L must be a decimal value");
 			evryThingIsOk=false;
-		}	
-		
-		if(Integer.parseInt(param.getL())<0){
+		}
+
+		if(param.getL()<0){
 			new Error_message("L can not be negative value");
 			evryThingIsOk=false;
 		}

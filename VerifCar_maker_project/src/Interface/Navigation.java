@@ -51,7 +51,7 @@ public class Navigation extends JDialog {
 		this.car=car;
 
 		ArrayList<String> num_lane=new ArrayList<String>();
-		for(int i=0;i<Integer.parseInt(param.getNb_lane());i++){
+		for(int i=0;i<param.getNb_lane();i++){
 			num_lane.add(i,""+(i+1));
 		}
 
@@ -109,7 +109,7 @@ public class Navigation extends JDialog {
 
 			txtP.add(y, new JTextField());
 			try{
-				txtP.get(y).setText(param.getCar_list().get(car.getIndex()).getNavigation_posX().get(y));
+				txtP.get(y).setText(""+param.getCar_list().get(car.getIndex()).getNavigation_posX().get(y));
 			}
 			catch(IndexOutOfBoundsException e){
 				txtP.get(y).setText("");
@@ -123,7 +123,7 @@ public class Navigation extends JDialog {
 			txtP.get(y).setColumns(10);
 
 			comboBox.add(y, new JComboBox());
-			for(int i=0;i<Integer.parseInt(param.getNb_lane());i++){
+			for(int i=0;i<param.getNb_lane();i++){
 				comboBox.get(y).addItem(num_lane.get(i));
 			}
 			try{
@@ -141,7 +141,7 @@ public class Navigation extends JDialog {
 			getContentPane().add(comboBox.get(y), gbc_comboBox.get(y));
 
 			comboBox_2.add(y, new JComboBox());
-			for(int i=0;i<Integer.parseInt(param.getNb_lane());i++){
+			for(int i=0;i<param.getNb_lane();i++){
 				comboBox_2.get(y).addItem(num_lane.get(i));
 			}
 			try{
@@ -159,7 +159,7 @@ public class Navigation extends JDialog {
 			getContentPane().add(comboBox_2.get(y), gbc_comboBox_5.get(y));
 
 		}
-		txtP.get(y-1).setText(param.getL());
+		txtP.get(y-1).setText(""+param.getL());
 		txtP.get(y-1).setEditable(false);
 
 		JButton btnSave = new JButton("Save");

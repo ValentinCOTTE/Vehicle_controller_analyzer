@@ -4,33 +4,33 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Car_set implements Serializable{
-	String length_vehicle;
-	String width_vehicle;
-	String vmax;
-	String amin;
-	String amax;
-	String ctrfreq;
-	String maxcom;
-	String mincom;
-	String initposx;
-	String initposy;
-	String initV;
+	int length_vehicle;
+	int width_vehicle;
+	int vmax;
+	int amin;
+	int amax;
+	int ctrfreq;
+	int maxcom;
+	int mincom;
+	int initposx;
+	int initposy;
+	int initV;
 	int STEP_initV;
 	int LIMIT_initV;
-	String initA;
+	int initA;
 	int STEP_initA;
 	int LIMIT_initA;
-	String navigationpoints;
+	int navigationpoints;
 
-	ArrayList<String> navigation_posX=new ArrayList<String>();
-	ArrayList<String> navigation_laneInf=new ArrayList<String>();
-	ArrayList<String> navigation_laneSup=new ArrayList<String>();
+	ArrayList<Integer> navigation_posX=new ArrayList<Integer>();
+	ArrayList<Integer> navigation_laneInf=new ArrayList<Integer>();
+	ArrayList<Integer> navigation_laneSup=new ArrayList<Integer>();
 
 
-	public Car_set(String length_vehicle, String width_vehicle, String vmax, String amin, String amax,
-			String ctrfreq, String maxcom,String mincom, String initposx, String initposy,String initV, int STEP_initV,
-			int LIMIT_initV, String initA, int STEP_initA, int LIMIT_initA, String navigationpoints, ArrayList<String> navigation_posX, ArrayList<String> navigation_laneInf,
-			ArrayList<String> navigation_laneSup) {
+	public Car_set(int length_vehicle, int width_vehicle, int vmax, int amin, int amax,
+			int ctrfreq, int maxcom,int mincom, int initposx, int initposy,int initV, int STEP_initV,
+			int LIMIT_initV, int initA, int STEP_initA, int LIMIT_initA, int navigationpoints, ArrayList<Integer> navigation_posX, ArrayList<Integer> navigation_laneInf,
+			ArrayList<Integer> navigation_laneSup) {
 		super();
 		this.length_vehicle = length_vehicle;
 		this.width_vehicle = width_vehicle;
@@ -58,131 +58,131 @@ public class Car_set implements Serializable{
 	}
 
 
-	public String getLength_vehicle() {
+	public int getLength_vehicle() {
 		return length_vehicle;
 	}
 
-	public void setLength_vehicle(String length_vehicle) {
+	public void setLength_vehicle(int length_vehicle) {
 		this.length_vehicle = length_vehicle;
 	}
 
-	public String getWidth_vehicle() {
+	public int getWidth_vehicle() {
 		return width_vehicle;
 	}
 
-	public void setWidth_vehicle(String width_vehicle) {
+	public void setWidth_vehicle(int width_vehicle) {
 		this.width_vehicle = width_vehicle;
 	}
 
-	public String getVmax() {
+	public int getVmax() {
 		return vmax;
 	}
 
-	public void setVmax(String vmax) {
+	public void setVmax(int vmax) {
 		this.vmax = vmax;
 	}
 
-	public String getAmin() {
+	public int getAmin() {
 		return amin;
 	}
 
-	public void setAmin(String amin) {
+	public void setAmin(int amin) {
 		this.amin = amin;
 	}
 
-	public String getAmax() {
+	public int getAmax() {
 		return amax;
 	}
 
-	public void setAmax(String amax) {
+	public void setAmax(int amax) {
 		this.amax = amax;
 	}
 
-	public String getMaxcom() {
+	public int getMaxcom() {
 		return maxcom;
 	}
 
-	public void setMaxcom(String maxcom) {
+	public void setMaxcom(int maxcom) {
 		this.maxcom = maxcom;
 	}
 
-	public String getCtrfreq() {
+	public int getCtrfreq() {
 		return ctrfreq;
 	}
 
-	public void setCtrfreq(String ctrfreq) {
+	public void setCtrfreq(int ctrfreq) {
 		this.ctrfreq = ctrfreq;
 	}
 
-	public String getMincom() {
+	public int getMincom() {
 		return mincom;
 	}
 
-	public void setMincom(String mincom) {
+	public void setMincom(int mincom) {
 		this.mincom = mincom;
 	}
 
-	public String getInitposx() {
+	public int getInitposx() {
 		return initposx;
 	}
 
-	public void setInitposx(String initposx) {
+	public void setInitposx(int initposx) {
 		this.initposx = initposx;
 	}
 
-	public String getInitV() {
+	public int getInitV() {
 		return initV;
 	}
 
-	public void setInitV(String initV) {
+	public void setInitV(int initV) {
 		this.initV = initV;
 	}
 
-	public String getInitA() {
+	public int getInitA() {
 		return initA;
 	}
 
-	public void setInitA(String initA) {
+	public void setInitA(int initA) {
 		this.initA = initA;
 	}
 
-	public String getInitposy() {
+	public int getInitposy() {
 		return initposy;
 	}
 
-	public void setInitposy(String initposy) {
+	public void setInitposy(int initposy) {
 		this.initposy = initposy;
 	}
 
-	public String getNavigationpoints() {
+	public int getNavigationpoints() {
 		return navigationpoints;
 	}
 
-	public void setNavigationpoints(String navigationpoints) {
+	public void setNavigationpoints(int navigationpoints) {
 		this.navigationpoints = navigationpoints;
 	}
 
-	public ArrayList<String> getNavigation_posX() {
+	public ArrayList<Integer> getNavigation_posX() {
 		return navigation_posX;
 	}
 
-	public void setNavigation_posX(ArrayList<String> navigation_posX) {
+	public void setNavigation_posX(ArrayList<Integer> navigation_posX) {
 		this.navigation_posX = navigation_posX;
 	}
 
-	public ArrayList<String> getNavigation_laneInf() {
+	public ArrayList<Integer> getNavigation_laneInf() {
 		return navigation_laneInf;
 	}
 
-	public void setNavigation_laneInf(ArrayList<String> navigation_laneInf) {
+	public void setNavigation_laneInf(ArrayList<Integer> navigation_laneInf) {
 		this.navigation_laneInf = navigation_laneInf;
 	}
 
-	public ArrayList<String> getNavigation_laneSup() {
+	public ArrayList<Integer> getNavigation_laneSup() {
 		return navigation_laneSup;
 	}
 
-	public void setNavigation_laneSup(ArrayList<String> navigation_laneSup) {
+	public void setNavigation_laneSup(ArrayList<Integer> navigation_laneSup) {
 		this.navigation_laneSup = navigation_laneSup;
 	}
 

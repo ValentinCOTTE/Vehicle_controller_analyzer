@@ -23,228 +23,228 @@ public class Save_car implements ActionListener{
 	//error zone
 		boolean evryThingIsOk=true;
 		try{
-			Integer.parseInt(this.car.getLength_vehicle());
+			Integer.parseInt(this.car.getTxtLengthvehicle().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("length_vehicle must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getLength_vehicle())<0){
+		if(Integer.parseInt(this.car.getTxtLengthvehicle().getText())<0){
 			new Error_message("length_vehicle can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getWidth_vehicle());
+			Integer.parseInt(this.car.getTxtWidthvehicle().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("width_vehicle must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getWidth_vehicle())<0){
+		if(Integer.parseInt(this.car.getTxtWidthvehicle().getText())<0){
 			new Error_message("width_vehicle can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getVmax());
+			Integer.parseInt(this.car.getTxtVmax().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("v_max must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getVmax())<0){
+		if(Integer.parseInt(this.car.getTxtVmax().getText())<0){
 			new Error_message("v_max can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getAmin());
+			Integer.parseInt(this.car.getTxtAmin().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("a_min must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getAmin())>Integer.parseInt(this.car.getAmax())){
+		if(Integer.parseInt(this.car.getTxtAmin().getText())>Integer.parseInt(this.car.getTxtAmax().getText())){
 			new Error_message("a_min can not be greater than a_max");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getAmax());
+			Integer.parseInt(this.car.getTxtAmax().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("a_max must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getAmax())<0){
+		if(Integer.parseInt(this.car.getTxtAmax().getText())<0){
 			new Error_message(" a_max can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getCtrfreq());
+			Integer.parseInt(this.car.getTxtCtrfreq().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("ctr_freq must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getCtrfreq())<0){
+		if(Integer.parseInt(this.car.getTxtCtrfreq().getText())<0){
 			new Error_message("ctr_freq can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getMaxcom());
+			Integer.parseInt(this.car.getTxtMaxcom().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("max_com must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getMaxcom())<0){
+		if(Integer.parseInt(this.car.getTxtMaxcom().getText())<0){
 			new Error_message("max_com can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getMincom());
+			Integer.parseInt(this.car.getTxtMincom().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("min_com must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getMincom())<0){
+		if(Integer.parseInt(this.car.getTxtMincom().getText())<0){
 			new Error_message("min_com can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getInitposx());
+			Integer.parseInt(this.car.getTxtInitposx().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("init_posX must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitposx())<0){
+		if(Integer.parseInt(this.car.getTxtInitposx().getText())<0){
 			new Error_message("init_posX can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getInitposy());
+			Integer.parseInt(this.car.getTxtInitposy().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("init_posY must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitposy())<0){
+		if(Integer.parseInt(this.car.getTxtInitposy().getText())<0){
 			new Error_message("init_posY can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getInitV());
+			Integer.parseInt(this.car.getTxtInitV().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("init_V must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitV())<0){
+		if(Integer.parseInt(this.car.getTxtInitV().getText())<0){
 			new Error_message("init_V can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getInitA());
+			Integer.parseInt(this.car.getTxtInitA().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("init_A must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitA())<0){
+		if(Integer.parseInt(this.car.getTxtInitA().getText())<0){
 			new Error_message("init_A can not be negative value");
 			evryThingIsOk=false;
 		}
 
 		try{
-			Integer.parseInt(this.car.getNavigationpoints());
+			Integer.parseInt(this.car.getTxtNavigationpoints().getText());
 		}
 		catch(NumberFormatException e){
 			new Error_message("navigation_points must be a decimal value");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getNavigationpoints())<0){
+		if(Integer.parseInt(this.car.getTxtNavigationpoints().getText())<0){
 			new Error_message("navigation_points can not be negative value");
 			evryThingIsOk=false;
 		}
 
-		if(this.car.getNavigation_posX().size()!=(Integer.parseInt(this.car.getNavigationpoints()))){
+		if(this.car.getNavigation_posX().size()!=(Integer.parseInt(this.car.getTxtNavigationpoints().getText()))){
 			new Error_message("navigation_list is not defined");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getVmax())<Integer.parseInt(param.getV_min())){
+		if(Integer.parseInt(this.car.getTxtVmax().getText())<Integer.parseInt(param.getTxtV_min().getText())){
 			new Error_message("v_max can not be smaller than V_min");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getCtrfreq())<Integer.parseInt(param.getS())){
+		if(Integer.parseInt(this.car.getTxtCtrfreq().getText())<Integer.parseInt(param.getTxtS().getText())){
 			new Error_message("ctr_freq can not be smaller than S");
 			evryThingIsOk=false;
 		}
-		if(Integer.parseInt(this.car.getMaxcom())>Integer.parseInt(this.car.getCtrfreq())){
+		if(Integer.parseInt(this.car.getTxtMaxcom().getText())>Integer.parseInt(this.car.getTxtCtrfreq().getText())){
 			new Error_message("ctr_freq can not be smaller than max_com");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getMaxcom())<Integer.parseInt(this.car.getMincom())){
+		if(Integer.parseInt(this.car.getTxtMaxcom().getText())<Integer.parseInt(this.car.getTxtMincom().getText())){
 			new Error_message("max_com can not be smaller than min_com");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitposx())>Integer.parseInt(param.getL())){
+		if(Integer.parseInt(this.car.getTxtInitposx().getText())>Integer.parseInt(param.getTxtL().getText())){
 			new Error_message("init_posX can not be greater than L");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitposy())>Integer.parseInt(param.getR())){
+		if(Integer.parseInt(this.car.getTxtInitposy().getText())>Integer.parseInt(param.getTxtR().getText())){
 			new Error_message("init_posY can not be smaller than R");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitV())<Integer.parseInt(param.getV_min())){
+		if(Integer.parseInt(this.car.getTxtInitV().getText())<Integer.parseInt(param.getTxtV_min().getText())){
 			new Error_message("init_V can not be smaller than V_min");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitV())>Integer.parseInt(this.car.getVmax())){
+		if(Integer.parseInt(this.car.getTxtInitV().getText())>Integer.parseInt(this.car.getTxtVmax().getText())){
 			new Error_message("init_V can not be greater than v_max");
 			evryThingIsOk=false;
 		}
-		if(Integer.parseInt(this.car.getInitA())<Integer.parseInt(this.car.getAmin())){
+		if(Integer.parseInt(this.car.getTxtInitA().getText())<Integer.parseInt(this.car.getTxtAmin().getText())){
 			new Error_message("init_A can not be smaller than a_min");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getInitA())>Integer.parseInt(this.car.getAmax())){
+		if(Integer.parseInt(this.car.getTxtInitA().getText())>Integer.parseInt(this.car.getTxtAmax().getText())){
 			new Error_message("init_A can not be greater than a_max");
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getNavigationpoints())<1){
+		if(Integer.parseInt(this.car.getTxtNavigationpoints().getText())<1){
 			new Error_message("init_A can not be greater than a_max");
 			evryThingIsOk=false;
 		}
