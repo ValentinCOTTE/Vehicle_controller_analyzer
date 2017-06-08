@@ -84,6 +84,8 @@ public class Car extends JDialog {
 	ArrayList<Integer> navigation_posX=new ArrayList<Integer>();
 	ArrayList<Integer> navigation_laneInf=new ArrayList<Integer>();
 	ArrayList<Integer> navigation_laneSup=new ArrayList<Integer>();
+	private JLabel lblStep;
+	private JLabel lblLimit;
 
 
 
@@ -115,6 +117,20 @@ public class Car extends JDialog {
 		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 1.0, 1.0, 1.0, 0.0};
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
+
+		lblStep = new JLabel("STEP");
+		GridBagConstraints gbc_lblStep = new GridBagConstraints();
+		gbc_lblStep.insets = new Insets(0, 0, 5, 5);
+		gbc_lblStep.gridx = 3;
+		gbc_lblStep.gridy = 0;
+		contentPane.add(lblStep, gbc_lblStep);
+
+		lblLimit = new JLabel("LIMIT");
+		GridBagConstraints gbc_lblLimit = new GridBagConstraints();
+		gbc_lblLimit.insets = new Insets(0, 0, 5, 5);
+		gbc_lblLimit.gridx = 4;
+		gbc_lblLimit.gridy = 0;
+		contentPane.add(lblLimit, gbc_lblLimit);
 
 
 		JLabel lblLengthvehicle = new JLabel("length_vehicle=");
@@ -594,7 +610,10 @@ public class Car extends JDialog {
 	public int getSTEP_initV() {
 		this.STEP_initV=Integer.parseInt(this.txtStepinitv.getText());
 		if(STEP_initV<1){
-			return Integer.parseInt(this.getTxtInitV().getText());
+			if(Integer.parseInt(this.txtLimitinitv.getText())<0){
+				return 1;
+			}
+			return Math.abs(Integer.parseInt(this.getTxtInitV().getText()))+Math.abs(Integer.parseInt(this.txtLimitinitv.getText()));
 		}
 		return STEP_initV;
 	}
@@ -615,7 +634,10 @@ public class Car extends JDialog {
 	public int getSTEP_initA() {
 		this.STEP_initA=Integer.parseInt(this.txtStepinita.getText());
 		if(STEP_initA<1){
-			return Integer.parseInt(this.txtLimitinita.getText());
+			if(Integer.parseInt(this.txtLimitinita.getText())<0){
+				return 1;
+			}
+			return Math.abs(Integer.parseInt(this.txtLimitinita.getText())+Math.abs(Integer.parseInt(this.getTxtInitA().getText())));
 		}
 		return STEP_initA;
 	}

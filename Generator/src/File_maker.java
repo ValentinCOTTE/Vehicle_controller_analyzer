@@ -11,7 +11,7 @@ public class File_maker {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(new File("resources/VerifCar.xml")));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(new File("new_VerifCar.xml")));
-			
+
 			String parameters_zone="<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
 					+ "<!DOCTYPE nta PUBLIC \'-//Uppaal Team//DTD Flat System 1.1//EN\' \'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd\'>\n"
 					+ "<nta>\n"
@@ -48,8 +48,8 @@ public class File_maker {
 					+ "const int nb_car := "+args[argNum]+";	// number of vehicles (&gt;= 2)\n";
 			int nb_car=Integer.parseInt(args[argNum]);
 					argNum++;
-					
-					parameters_zone+="const int ctr_freq[nb_car] := {"+args[argNum]; 
+
+					parameters_zone+="const int ctr_freq[nb_car] := {"+args[argNum];
 					argNum++;
 					for(int i=1;i<nb_car;i++){
 						parameters_zone+=","+args[argNum];
@@ -78,7 +78,7 @@ public class File_maker {
 					}
 					parameters_zone+="};	// initial longitudinal position for each vehicle in 1/scale meters\n"
 					+ "const int init_posY[nb_car] := {"+args[argNum];
-					
+
 					argNum++;
 					for(int i=1;i<nb_car;i++){
 						parameters_zone+=","+args[argNum];
@@ -107,7 +107,7 @@ public class File_maker {
 					parameters_zone+= "const int navigation_list[nb_car][navigation_points][3] := {\n"
 					+"{{("+args[argNum]+"*scale)/(NormX*S),"+args[argNum+1]+","+args[argNum+2]+"}";
 					argNum+=3;
-					
+
 					for(int i=1;i<nb_nav;i++){
 						parameters_zone+=",{("+args[argNum]+"*scale)/(NormX*S),"+args[argNum+1]+","+args[argNum+2]+"}";
 						argNum+=3;
@@ -132,33 +132,33 @@ public class File_maker {
 					+ "//////////////////////////////////////////////////////////////////////Parameters end zone\n";
 			argNum+=5;
 			writer.write(parameters_zone);
-			
+
 			//end_code
 			String line;
 			while(!reader.readLine().equals("//The code below this line can be modified (this line can not be modified)")){
 				//keep reading
 			}
-			
+
 			line=reader.readLine();
 			while(!line.equals("//The code above this line can be modified (this line can not be modified)")){
 				writer.write(line+"\n");
 				line=reader.readLine();
 			}
-			
+
 			String system_zone="Ctr0 = Controller(0);\n"
 					+ "Ctr1 = Controller(1);// List one or more processes to be composed into a system.\n";
 			for(int i=2;i<nb_car;i++){
 				system_zone+="Ctr"+i+" = Controller("+i+");\n";
 			}
 			system_zone+="system Env, Ctr0, Ctr1";
-			
+
 			for(int i=2;i<nb_car;i++){
 				system_zone+=", Ctr"+i;
 			}
 			system_zone+=";\n";
-			
+
 			writer.write(system_zone);
-			
+
 			while(!reader.readLine().equals("//The code below this line can be modified (this line can not be modified)")){
 				//keep reading
 			}
@@ -166,12 +166,12 @@ public class File_maker {
 			while((line=reader.readLine())!=null){
 				writer.write(line+"\n");
 			}
-			
-			 
+
+
 			writer.close();
 			reader.close();
-			
-			System.out.println("new_VerifCar.xml crée");
+
+			System.out.println("new_VerifCar.xml uploaded");
 		}
 		catch (IOException e){
 			e.printStackTrace();

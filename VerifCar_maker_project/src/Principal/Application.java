@@ -55,7 +55,7 @@ public class Application extends JFrame {
 			ArrayList<Integer> sup1=new ArrayList<Integer>();
 			sup1.add(1);
 			sup1.add(1);
-		Car_list.add(new Car_set(500, 200, 4000, -500, 300, 11, 4, 3, 5000, 525, 2000, 0, 2000, 0, 0, 0, 2, posx1, inf1, sup1));
+		Car_list.add(new Car_set(500, 200, 4000, -500, 300, 11, 4, 3, 5000, 525, 2000, 1, 2000, 0, 1, 0, 2, posx1, inf1, sup1));
 			ArrayList<Integer> posx2=new ArrayList<Integer>();
 			posx2.add(0);
 			posx2.add(50000);
@@ -65,7 +65,7 @@ public class Application extends JFrame {
 			ArrayList<Integer> sup2=new ArrayList<Integer>();
 			sup2.add(1);
 			sup2.add(1);
-		Car_list.add(new Car_set(500, 200, 4000, -500, 300, 11, 4, 3, 0, 525, 3000, 0, 3000, 0, 0, 0, 2, posx2, inf2, sup2));
+		Car_list.add(new Car_set(500, 200, 4000, -500, 300, 11, 4, 3, 0, 525, 3000, 1, 3000, 0, 1, 0, 2, posx2, inf2, sup2));
 
 		int navigation_points_max=2;
 		int V_max=4000;
