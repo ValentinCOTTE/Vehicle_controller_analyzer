@@ -1,0 +1,5 @@
+voiture1: init_V=2000  init_A=0        voiture2: init_V=3000  init_A=0
+voiture1: init_V=2000  init_A=0        voiture2: init_V=3000  init_A=0
+
+Verifying formula 1 at line 1
+ -- Formula is NOT satisfied.

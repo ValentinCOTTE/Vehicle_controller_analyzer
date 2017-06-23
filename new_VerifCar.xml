@@ -28,10 +28,10 @@ const int nb_car := 2;	// number of vehicles (&gt;= 2)
 const int ctr_freq[nb_car] := {11,11};	// activation sample of the controler for each vehicle in 1/scale second, must be greater than S
 const int min_com_delay[nb_car] := {3,3}; // min communication delay for each vehicle in 1/scale second, must be smaller than the vehicle's controller sample
 const int max_com_delay[nb_car] := {4,4};	// max communication delay for each vehicle in 1/scale second, must be smaller than the vehicle's controller sample
-const int init_posX[nb_car] := {600,0};	// initial longitudinal position for each vehicle in 1/scale meters
+const int init_posX[nb_car] := {0,750};	// initial longitudinal position for each vehicle in 1/scale meters
 const int init_posY[nb_car] := {525,525};	// initial lateral position for each vehicle in 1/scale meters
-const int init_V[nb_car] := {2000,4000};	// initial longitudinal speed for each vehicle in 1/scale meters per second
-const int init_A[nb_car] := {0,0};	// initial longitudinal acceleration for each vehicle in 1/scale meters per second squared
+const int init_V[nb_car] := {3000,2000};	// initial longitudinal speed for each vehicle in 1/scale meters per second
+const int init_A[nb_car] := {0,-500};	// initial longitudinal acceleration for each vehicle in 1/scale meters per second squared
 
 // Control related information
 const int navigation_points := 2;	// number of coordinate on a navigation list

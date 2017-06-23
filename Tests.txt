@@ -1,123 +1,55 @@
+voiture1: init_V=2500  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is NOT satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2550  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is NOT satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2600  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is NOT satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is NOT satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is NOT satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is NOT satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is NOT satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is NOT satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2650  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2700  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2750  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2800  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2850  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2900  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=2950  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
+-------------------------------------------------------------------------
+voiture1: init_V=3000  init_A=0        voiture1: init_V=2000  init_A=-500
 
 Verifying formula 1 at line 1
  -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
-
-Verifying formula 1 at line 1
- -- Formula is satisfied.
+-------------------------------------------------------------------------

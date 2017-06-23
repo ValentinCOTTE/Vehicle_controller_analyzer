@@ -451,9 +451,9 @@ public class Car extends JDialog {
 
 		this.amax=set.getAmax();
 
-		this.maxcom=set.getMaxcom();
-
 		this.ctrfreq=set.getCtrfreq();
+
+		this.maxcom=set.getMaxcom();
 
 		this.mincom=set.getMincom();
 
@@ -489,9 +489,9 @@ public class Car extends JDialog {
 
 		this.amax=300;
 
-		this.maxcom=11;
+		this.ctrfreq=11;
 
-		this.ctrfreq=4;
+		this.maxcom=4;
 
 		this.mincom=3;
 

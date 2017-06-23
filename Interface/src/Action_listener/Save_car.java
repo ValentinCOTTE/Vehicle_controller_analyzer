@@ -173,10 +173,6 @@ public class Save_car implements ActionListener{
 			evryThingIsOk=false;
 		}
 
-		if(Integer.parseInt(this.car.getTxtInitA().getText())<0){
-			new Error_message("init_A can not be negative value");
-			evryThingIsOk=false;
-		}
 
 		try{
 			Integer.parseInt(this.car.getTxtNavigationpoints().getText());
