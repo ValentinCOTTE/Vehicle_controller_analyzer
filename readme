@@ -1,8 +1,31 @@
-Simple results
-./verifyta -q -s VerifCar.xml VerifCar.q > Tests.txt
+Etape 1: Le fichier à lancer est "Vehicle_controller_analyzer.sh"
+	(Lancer avec un Terminal permet d'avoir plus d'informations sur le déroulement)
 
-Results with global time and consuption
-./memtime ./verifyta -q -s VerifCar.xml VerifCar.q > Tests.txt
+Etape Optionnelle: Pour charger un set de paramètres, cliquer sur "LOAD SETTINGS" puis sur le set de paramètres choisis.
 
-Results with individual time and consuption summary
-./verifyta -q -s -u VerifCar.xml VerifCar.q > Tests.txt
+Etape 2: Remplir la première page
+
+Etape 3: Pour remplir le tableau "marking" appuyer sur le bouton "Define"
+
+Etape 4: Après avoir remplir chaques positions, il faut bien appuyer sur le bouton "Save" 
+	(fermer la fenetre n'enregistrera rien)
+
+Etape 5: Cliquer sur "Cars settings", ce qui va ouvrir autant de pages qu'il y a de voitures (nb_car)
+
+Etage 6: remplir chaque page de voiture et "navigation_list de la même façon que pour "marking" (etape 3 et4)
+
+Etape 7: Après avoir fermer chaque fenetre de voiture (en Appuyant sur "Save")
+
+Etape Optionelle: Edit code ou Edit queries ne font qu'ouvrir les fichier qui y correspondent.
+
+Etape 8: Si tout à bien été compléter, vous pouvez cliquer sur "Finish"
+	(Si après l'étape 2 vous avez modifier la première page, il faut mieux recommancer)
+
+Etape 9: Une dernière fenêtre s'affiche pour vous demandez si vous voulez sauvegarder
+	Si oui, remplir renseigner le nom et cliquer sur "Save"
+	Sinon, cliquer sur 'Continue without saving"
+
+Etape 10: Après le temps de calcul, les résultats se trouves dans le fichier "Tests.txt"
+
+
+
